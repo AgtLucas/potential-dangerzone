@@ -3,12 +3,20 @@
 var ts = "";
 
 angular.module('Danger')
-  .controller('ctrlConBull', ['$scope', 'resolvedBull',
-    function ($scope, resolvedBull) {
+  .controller('ctrlConBull', ['$scope', 'resolvedBull', 'Bull',
+    function ($scope, resolvedBull, Bull) {
 
       $scope.bulls = resolvedBull;
-
-      ts = $scope.bulls;
+    
+      $scope.save = function (id) {
+        if (id) {
+          Bull.update({id: id}, $scope.bull,
+            function () {    
+              new PNotify({text: "<strong>" + id + "</strong> abatido com sucesso!", type: 'success', icon: '', delay: 2500});              
+              $scope.clear();              
+            });
+        }
+      };      
 
       $scope.situacao = function(situacao){        
         if(situacao === 1){
@@ -16,6 +24,14 @@ angular.module('Danger')
         }
         return "Abatido";
       }
+
+      $scope.abater = function(obj){
+        $scope.bull = obj;
+        angular.extend($scope.bull, {
+          status: 2
+        });
+        $scope.save(obj.id);
+      };    
 
       $scope.nascimento = function(data){
         return (data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0]);
