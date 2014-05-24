@@ -26,7 +26,3 @@ node_modules
 
 *.DS_Store
 *.sass-cache
-
-####
-
-models/index.js
