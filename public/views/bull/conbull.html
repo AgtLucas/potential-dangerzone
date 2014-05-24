@@ -28,7 +28,7 @@
 					<td>{{nascimento(obj.birthday)}}</td>
 					<td>{{situacao(obj.status)}}</td>					
 					<td class="text-center">
-						<button type="button" class="btn btn-xs btn-danger" ng-show="obj.status == 1" ng-click="abater(obj)">Abater</button>
+						<button type="button" class="btn btn-xs btn-danger" ng-disabled="obj.status != 1" ng-click="abater(obj)">Abater</button>
 					</td>
 				</tr>
 			</tbody>
