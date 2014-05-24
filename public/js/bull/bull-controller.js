@@ -34,8 +34,7 @@ angular.module('Danger')
           "status": "",          
           "slaughter": "",          
           "id": ""          
-        };
-        $("#nascimento").val("")
+        };        
         $("#brinco").val("")
       };  
 
@@ -50,9 +49,9 @@ angular.module('Danger')
         }                            
       
         angular.extend($scope.bull, {
-          earring: 1,
+          earring: brinco,
           status: 1,
-          slaughter: "2013-10-10",
+          slaughter: "2000-01-01",
           birthday: "2013-10-10"
         });
       

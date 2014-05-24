@@ -12,4 +12,13 @@ angular.module('Danger')
           }]
         }
       })
+      .when('/ConBull', {
+        templateUrl: 'views/bull/conbull.html',
+        controller: 'ctrlConBull',
+        resolve:{
+          resolvedBull: ['Bull', function (Bull) {
+            return Bull.query();
+          }]
+        }
+      })
     }]);

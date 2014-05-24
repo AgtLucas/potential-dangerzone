@@ -9,16 +9,18 @@
 		<table class="table table-bordered table-condensed">			
 			<thead>
 				<tr>
+					<th class="text-center">#</th>
 					<th class="text-center">Brinco</th>
 					<th class="text-center">Data de Nascimento</th>
 					<th class="text-center">Situação</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="obj in bois">
-					<td>{{obj.brinco}}</td>
-					<td>20/10/2014</td>
-					<td>{{1}}</td>					
+				<tr ng-repeat="obj in bulls | orderBy: 'earring'">
+					<td>{{obj.id}}</td>
+					<td>{{obj.earring}}</td>
+					<td>{{nascimento(obj.birthday)}}</td>
+					<td>{{situacao(obj.status)}}</td>					
 				</tr>
 			</tbody>
 		</table>

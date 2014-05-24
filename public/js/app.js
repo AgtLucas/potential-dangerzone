@@ -14,7 +14,7 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
       controller: 'ctrlNewWeighing'
     }).      
     when('/ConBull', {
-      templateUrl: 'views/home/bull/conbull.html',
+      templateUrl: 'views/bull/conbull.html',
       controller: 'ctrlConBull'
     }).      
     when('/ConAll', {
