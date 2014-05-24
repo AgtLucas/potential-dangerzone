@@ -1,0 +1,42 @@
+<div class="starter-template">
+	<div class="col-sm-12">
+		<div class="row">
+			<button type="button" class="btn btn-primary" ng-click="gerarPDF()">
+				<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
+			</button>
+		</div>
+		<br />	
+		<table class="table table-bordered table-condensed" ng-repeat="obj in bois">						
+			<thead>
+				<tr>
+					<th class="text-center table-brinco">Brinco</th>					
+					<th class="text-center">Pesagens</th>										
+					<th class="text-center table-total">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="table-brinco">{{obj.brinco}}</td>			
+					<td class="text-center td-pesagem">						
+						<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in obj.pesos" >
+							<thead>
+								<tr>
+									<th class="text-center">{{pesos.data}}</th>									
+									<th ng-show="$index > 0" class="text-center">Evolução</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>									
+									<td class="text-center">{{pesos.peso}}</td>
+									<td ng-show="$index > 0" class="text-center">{{evolucao(obj.pesos[$index - 1].peso, obj.pesos[$index].peso)}}</td>
+								</tr>
+							</tbody>
+						</table>
+						{{pesos.peso}}
+					</td>																
+					<td class="table-total">{{evolucao(obj.pesos[0].peso, obj.pesos[obj.pesos.length - 1].peso)}}</td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>	
+</div>
