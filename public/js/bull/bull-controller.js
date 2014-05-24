@@ -41,15 +41,15 @@ angular.module('Danger')
 
       $scope.clear = function () {
         $scope.bull = {
-          
+
           "earring": "",
-          
+
           "birthday": "",
-          
+
           "status": "",
-          
+
           "slaughter": "",
-          
+
           "id": ""
         };
       };
@@ -76,16 +76,16 @@ var BullSaveController =
   function ($scope, $modalInstance, bull) {
     $scope.bull = bull;
 
-    
+
     $scope.birthdayDateOptions = {
       dateFormat: 'yy-mm-dd',
-      
-      
+
+
     };
     $scope.slaughterDateOptions = {
       dateFormat: 'yy-mm-dd',
-      
-      
+
+
     };
 
     $scope.ok = function () {

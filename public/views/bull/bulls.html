@@ -21,41 +21,41 @@
                                    ng-model="bull.id" readonly>
                         </div>
 
-                        
+
                         <div class="form-group">
                             <label>earring:</label>
-                            
+
                             <input type="number" class="form-control" name="earring"
                                    ng-model="bull.earring" ng-required="true"
                                    />
                             <span class="error" ng-show="form.earring.$error.min">Must be greater than or equal to .</span>
                             <span class="error" ng-show="form.earring.$error.max">Must be less than or equal to .</span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>birthday:</label>
-                            
-                            <input type="text" class="form-control" name="birthday" ui-date="birthdayDateOptions" ui-date-format="yy-mm-dd" 
+
+                            <input type="text" class="form-control" name="birthday" ui-date="birthdayDateOptions" ui-date-format="yy-mm-dd"
                                    ng-model="bull.birthday" ng-required="true"/>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>status:</label>
-                            
+
                             <input type="number" class="form-control" name="status"
                                    ng-model="bull.status" ng-required="true"
                                    />
                             <span class="error" ng-show="form.status.$error.min">Must be greater than or equal to .</span>
                             <span class="error" ng-show="form.status.$error.max">Must be less than or equal to .</span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>slaughter:</label>
-                            
-                            <input type="text" class="form-control" name="slaughter" ui-date="slaughterDateOptions" ui-date-format="yy-mm-dd" 
+
+                            <input type="text" class="form-control" name="slaughter" ui-date="slaughterDateOptions" ui-date-format="yy-mm-dd"
                                    ng-model="bull.slaughter" ng-required="true"/>
                         </div>
-                        
+
 
                     </div>
                     <div class="modal-footer">
@@ -77,29 +77,29 @@
             <thead>
             <tr>
                 <th>ID</th>
-                
+
                 <th>earring</th>
-                
+
                 <th>birthday</th>
-                
+
                 <th>status</th>
-                
+
                 <th>slaughter</th>
-                
+
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="bull in bulls">
                 <td>{{bull.id}}</td>
-                
+
                 <td>{{bull.earring }}</td>
-                
+
                 <td>{{bull.birthday  | date:'yyyy-MM-dd'}}</td>
-                
+
                 <td>{{bull.status }}</td>
-                
+
                 <td>{{bull.slaughter  | date:'yyyy-MM-dd'}}</td>
-                
+
                 <td>
                     <button type="submit"
                             ng-click="update(bull.id)"
