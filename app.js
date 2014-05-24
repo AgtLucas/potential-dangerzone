@@ -8,6 +8,7 @@ var express        = require('express')
   , db             = require('./models')
 
   , bulls = require('./routes/bulls')
+  , weighings = require('./routes/weighings')
 
 var app = express()
 
@@ -31,6 +32,12 @@ app.get('/Danger/bulls/:id', bulls.find)
 app.post('/Danger/bulls', bulls.create)
 app.put('/Danger/bulls/:id', bulls.update)
 app.del('/Danger/bulls/:id', bulls.destroy)
+
+app.get('/Danger/weighings', weighings.findAll)
+app.get('/Danger/weighings/:id', weighings.find)
+app.post('/Danger/weighings', weighings.create)
+app.put('/Danger/weighings/:id', weighings.update)
+app.del('/Danger/weighings/:id', weighings.destroy)
 
 
 db

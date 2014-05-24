@@ -35,6 +35,27 @@
 					"required": true
 				}
 			]
+		},
+		{
+			"name": "weighing",
+			"attrs": [
+				{
+					"attrName": "weight",
+					"attrType": "Float",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "earring",
+					"attrType": "Integer",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
 		}
 	],
 	"resources": []
