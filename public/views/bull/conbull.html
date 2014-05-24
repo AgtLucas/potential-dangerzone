@@ -1,9 +1,14 @@
 <div class="starter-template">
 	<div class="col-sm-12">
 		<div class="row">
-			<button type="button" class="btn btn-primary" ng-click="gerarPDF()">
-				<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
-			</button>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="expressao" placeholder="Expressão de consulta"/>			
+			</div>			
+			<div class="col-sm-6" style="text-align: left">
+				<button type="button" class="btn btn-primary" ng-click="gerarPDF()">
+					<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
+				</button>
+			</div>						
 		</div>
 		<br />	
 		<table class="table table-bordered table-condensed">			
@@ -16,7 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="obj in bulls | orderBy: 'earring'">
+				<tr ng-repeat="obj in bulls | filter:expressao | orderBy: 'earring'">
 					<td>{{$index + 1}}</td>
 					<td>{{obj.earring}}</td>
 					<td>{{nascimento(obj.birthday)}}</td>
