@@ -1,10 +1,14 @@
 'use strict';
 
+var ts = "";
+
 angular.module('Danger')
   .controller('ctrlConBull', ['$scope', 'resolvedBull',
     function ($scope, resolvedBull) {
-      
-      $scope.bulls = resolvedBull;    
+
+      $scope.bulls = resolvedBull;
+
+      ts = $scope.bulls;
 
       $scope.situacao = function(situacao){        
         if(situacao === 1){
@@ -43,6 +47,16 @@ angular.module('Danger')
         doc.text(60, 45, "Data de Nascimento");
         doc.text(125, 45, "Situacao");
         doc.setFontType("normal");
+
+        $scope.bulls = $scope.bulls.sort(function (a, b) {
+          if (a.earring > b.earring){
+            return 1;
+          }            
+          if (a.earring < b.earring){
+            return -1;        
+          }            
+          return 0;
+        });   
 
         for(var i = 0; $scope.bulls.length > i; i++){          
           doc.text(coluna[_coluna], linha, ($scope.bulls[i].earring).toString());
