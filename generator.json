@@ -1,5 +1,41 @@
 {
 	"baseName": "Danger",
-	"entities": [],
+	"entities": [
+		{
+			"name": "bull",
+			"attrs": [
+				{
+					"attrName": "earring",
+					"attrType": "Integer",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "birthday",
+					"attrType": "Date",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "status",
+					"attrType": "Integer",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "slaughter",
+					"attrType": "Date",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		}
+	],
 	"resources": []
 }

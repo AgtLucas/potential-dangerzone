@@ -7,6 +7,7 @@ var express        = require('express')
   , path           = require('path')
   , db             = require('./models')
 
+  , bulls = require('./routes/bulls')
 
 var app = express()
 
@@ -24,6 +25,12 @@ if ('development' === app.get('env')) {
   app.use(errorHandler())
 }
 
+
+app.get('/Danger/bulls', bulls.findAll)
+app.get('/Danger/bulls/:id', bulls.find)
+app.post('/Danger/bulls', bulls.create)
+app.put('/Danger/bulls/:id', bulls.update)
+app.del('/Danger/bulls/:id', bulls.destroy)
 
 
 db
