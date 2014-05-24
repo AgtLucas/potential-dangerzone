@@ -1,10 +1,22 @@
 'use strict';
 
+var ts = "";
+
 angular.module('Danger')
-  .controller('ctrlConBull', ['$scope', 'resolvedBull',
-    function ($scope, resolvedBull) {
-      
-      $scope.bulls = resolvedBull;    
+  .controller('ctrlConBull', ['$scope', 'resolvedBull', 'Bull',
+    function ($scope, resolvedBull, Bull) {
+
+      $scope.bulls = resolvedBull;
+    
+      $scope.save = function (id) {
+        if (id) {
+          Bull.update({id: id}, $scope.bull,
+            function () {    
+              new PNotify({text: "<strong>" + id + "</strong> abatido com sucesso!", type: 'success', icon: '', delay: 2500});              
+              $scope.clear();              
+            });
+        }
+      };      
 
       $scope.situacao = function(situacao){        
         if(situacao === 1){
@@ -12,6 +24,14 @@ angular.module('Danger')
         }
         return "Abatido";
       }
+
+      $scope.abater = function(obj){
+        $scope.bull = obj;
+        angular.extend($scope.bull, {
+          status: 2
+        });
+        $scope.save(obj.id);
+      };    
 
       $scope.nascimento = function(data){
         return (data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0]);
@@ -34,15 +54,25 @@ angular.module('Danger')
         doc.setFontSize(11);
             
         var linha = 55;
-        var coluna = [10,60,120];
+        var coluna = [10,60,125];
         var _coluna = 0;
         
         doc.setFontSize(12);
         doc.setFontType("bold");
         doc.text(10, 45, "Brinco");
         doc.text(60, 45, "Data de Nascimento");
-        doc.text(120, 45, "Situacao");
+        doc.text(125, 45, "Situacao");
         doc.setFontType("normal");
+
+        $scope.bulls = $scope.bulls.sort(function (a, b) {
+          if (a.earring > b.earring){
+            return 1;
+          }            
+          if (a.earring < b.earring){
+            return -1;        
+          }            
+          return 0;
+        });   
 
         for(var i = 0; $scope.bulls.length > i; i++){          
           doc.text(coluna[_coluna], linha, ($scope.bulls[i].earring).toString());
