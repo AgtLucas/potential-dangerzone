@@ -17,7 +17,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="obj in bulls | orderBy: 'earring'">
-					<td>{{obj.id}}</td>
+					<td>{{$index + 1}}</td>
 					<td>{{obj.earring}}</td>
 					<td>{{nascimento(obj.birthday)}}</td>
 					<td>{{situacao(obj.status)}}</td>					

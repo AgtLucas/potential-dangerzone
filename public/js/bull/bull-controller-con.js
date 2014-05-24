@@ -34,14 +34,14 @@ angular.module('Danger')
         doc.setFontSize(11);
             
         var linha = 55;
-        var coluna = [10,60,120];
+        var coluna = [10,60,125];
         var _coluna = 0;
         
         doc.setFontSize(12);
         doc.setFontType("bold");
         doc.text(10, 45, "Brinco");
         doc.text(60, 45, "Data de Nascimento");
-        doc.text(120, 45, "Situacao");
+        doc.text(125, 45, "Situacao");
         doc.setFontType("normal");
 
         for(var i = 0; $scope.bulls.length > i; i++){          
