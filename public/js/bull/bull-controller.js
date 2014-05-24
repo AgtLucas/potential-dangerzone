@@ -38,6 +38,10 @@ angular.module('Danger')
         $("#brinco").val("")
       };  
 
+      $scope.nascimentoBanco = function(data){
+        return (data.split("/")[1] + "-" + data.split("/")[0] + "-" + data.split("/")[2]);
+      }
+
       $scope.ok = function () {
         var brinco = angular.uppercase($("#brinco").val());    
         var nascimento = $("#nascimento").val(); 
@@ -52,7 +56,7 @@ angular.module('Danger')
           earring: brinco,
           status: 1,
           slaughter: "2000-01-01",
-          birthday: "2013-10-10"
+          birthday: $scope.nascimentoBanco(nascimento)
         });
       
         $scope.save($scope.bull.id);
