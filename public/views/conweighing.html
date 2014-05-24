@@ -1,0 +1,49 @@
+<div class="starter-template">
+	<div class="col-sm-6">
+		<div class="form-group">
+   			<label class="pull-left">Brinco</label>
+  			<input type="text" class="form-control" placeholder="Número do brinco" ng-model="brinco"/>
+	 	</div> 		
+ 		<div class="pull-left">			
+			<button type="button" class="btn btn-primary" ng-click="pesquisar()">
+				<em class="glyphicon glyphicon-search"></em>&nbsp;&nbsp;Buscar
+			</button>
+		</div>							
+	</div>		
+	<div class="col-sm-12">
+		<br />
+		<div class="pull-left">
+			<h4>Brinco: {{bois.brinco}}</h4>
+		</div>			
+		<table class="table table-bordered table-condensed">						
+			<thead>
+				<tr>									
+					<th class="text-center">Pesagens</th>										
+					<th class="text-center table-total">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>							
+					<td class="text-center td-pesagem">						
+						<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in bois.pesos" >
+							<thead>
+								<tr>
+									<th class="text-center">{{pesos.data}}</th>									
+									<th ng-show="$index > 0" class="text-center">Evolução</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>									
+									<td class="text-center">{{pesos.peso}}</td>
+									<td ng-show="$index > 0" class="text-center">{{evolucao(bois.pesos[$index - 1].peso, bois.pesos[$index].peso)}}</td>
+								</tr>
+							</tbody>
+						</table>
+						{{pesos.peso}}
+					</td>																
+					<td class="table-total">{{evolucao(bois.pesos[0].peso, bois.pesos[bois.pesos.length - 1].peso)}}</td>
+				</tr>
+			</tbody>
+		</table>				
+	</div>
+</div>

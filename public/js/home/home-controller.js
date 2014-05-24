@@ -1,3 +1,3 @@
 angular.module('Danger')
-  .controller('HomeController', ['$scope', function ($scope) {
+  .controller('ctrlHome', ['$scope', function ($scope) {
   }]);

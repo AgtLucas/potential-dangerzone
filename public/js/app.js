@@ -1,9 +1,35 @@
-// Declare app level module which depends on filters, and services
 angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
   .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home/home.html', 
-        controller: 'HomeController'})
-      .otherwise({redirectTo: '/'});
-  }]);
+      $routeProvider.
+    when('/Home', {
+      templateUrl: 'views/home/home.html',
+      controller: 'ctrlHome'
+    }).
+    when('/NewBull', {
+      templateUrl: 'views/bull/newbull.html',
+      controller: 'ctrlNewBull'
+    }).
+    when('/NewWeighing', {
+      templateUrl: 'templates/newweighing.html',
+      controller: 'ctrlNewWeighing'
+    }).      
+    when('/ConBull', {
+      templateUrl: 'views/home/bull/conbull.html',
+      controller: 'ctrlConBull'
+    }).      
+    when('/ConAll', {
+      templateUrl: 'templates/conall.html',
+      controller: 'ctrlConAll'
+    }).  
+    when('/ConWeighing', {
+      templateUrl: 'templates/conweighing.html',
+      controller: 'ctrlConWeighing'
+    }).
+    when('/AbaterBull', {
+      templateUrl: 'views/home/bull/abaterbull.html',
+      controller: 'ctrlAbaterBull'
+    }).     
+    otherwise({
+      redirectTo: '/Home'
+	});
+}]);

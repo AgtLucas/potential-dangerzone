@@ -1,0 +1,32 @@
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.table-brinco {
+	width: 80px;
+}
+
+.table-total {
+	width: 130px;
+}
+
+.td-pesagem {
+	display: -webkit-box;
+	padding: 0px !important; 
+	border: 0px !important; 
+}
+
+.table-pesagem {
+	display: inline;
+	border: none; 
+	margin: 0px;
+}
+
+.ui-pnotify  {
+	margin-top: 60px !important;
+}
