@@ -7,7 +7,7 @@ exports.findAll = function(req, res) {
 }
 
 exports.find = function(req, res) {
-  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
+  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
     if (entity) {
       res.json(entity)
     } else {
@@ -24,7 +24,7 @@ exports.create = function(req, res) {
 }
 
 exports.update = function(req, res) {
-  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
+  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
     if (entity) {
       entity.updateAttributes(req.body).success(function(entity) {
         res.json(entity)
@@ -36,7 +36,7 @@ exports.update = function(req, res) {
 }
 
 exports.destroy = function(req, res) {
-  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
+  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
     if (entity) {
       entity.destroy().success(function() {
         res.send(204)

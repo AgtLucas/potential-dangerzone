@@ -10,17 +10,22 @@ angular.module('Danger')
         var retorno = [];                  
         for(var i = 0; i < obj.length; i++){          
           if($scope.percorre(retorno, obj[i].earring)){
-            retorno.push({ 'earring': obj[i].earring, 'weighings': [{ 'weight': obj[i].weight }]});            
+            retorno.push({ 'earring': obj[i].earring, 'weighings': [{ 'weight': obj[i].weight, "date": $scope.mergeDate(obj[i].createdAt) }]});            
           }else{            
             for(var o = 0; o < retorno.length; o++){              
               if(retorno[o].earring == obj[i].earring){
-                 retorno[o].weighings.push({'weight': obj[i].weight });                 
+                 retorno[o].weighings.push({'weight': obj[i].weight, "date": $scope.mergeDate(obj[i].createdAt)});                 
               }
             }
           }          
         }        
         $scope.myweighings = retorno;
+        console.log(retorno);
       }; 
+
+      $scope.mergeDate = function(data){
+        return (data.split("T")[0]).split("-")[1] + "/" + (data.split("T")[0]).split("-")[2];
+      }
 
       $scope.percorre = function(array, valor){
         var flag = true;
@@ -33,6 +38,7 @@ angular.module('Danger')
       }; 
 
       $scope.inicializar = function(){
+        console.log($scope.weighings);
         $scope.merge($scope.weighings);        
       }
 
@@ -68,7 +74,7 @@ angular.module('Danger')
           doc.text(coluna[_coluna], linha, ($scope.myweighings[i].earring).toString());
           _coluna++;
           for(var o = 0; $scope.myweighings[i].weighings.length > o; o++){ 
-            doc.text(coluna[_coluna], linha - 5, /*$scope.myweighings[i].weighings[o].data"*/ "10/10");         
+            doc.text(coluna[_coluna], linha - 5, $scope.myweighings[i].weighings[o].date);         
             doc.text(coluna[_coluna], linha, ($scope.myweighings[i].weighings[o].weight).toString());        
             if(o > 0){                    
               _coluna++;
