@@ -3,9 +3,9 @@
 angular.module('Danger')
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-      .when('/weighings', {
-        templateUrl: 'views/weighing/weighings.html',
-        controller: 'WeighingController',
+      .when('/NewWeighing', {
+        templateUrl: 'views/weighing/newweighing.html',
+        controller: 'ctrlNewWeighing',
         resolve:{
           resolvedWeighing: ['Weighing', function (Weighing) {
             return Weighing.query();

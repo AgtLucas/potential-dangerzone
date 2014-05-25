@@ -1,39 +1,29 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('WeighingController', ['$scope', '$modal', 'resolvedWeighing', 'Weighing',
-    function ($scope, $modal, resolvedWeighing, Weighing) {
+  .controller('ctrlNewWeighing', ['$scope', '$modal', 'Weighing',
+    function ($scope, $modal, Weighing) {
 
-      $scope.weighings = resolvedWeighing;
+      $("#brinco").mask("999999");
+      $("#peso").mask("999.99");
+  
+      var brinco, peso = ""; 
 
-      $scope.create = function () {
-        $scope.clear();
-        $scope.open();
-      };
-
-      $scope.update = function (id) {
-        $scope.weighing = Weighing.get({id: id});
-        $scope.open(id);
-      };
-
-      $scope.delete = function (id) {
-        Weighing.delete({id: id},
-          function () {
-            $scope.weighings = Weighing.query();
-          });
-      };
-
+      $scope.salvar = function(){  
+        
+    };
+   
       $scope.save = function (id) {
         if (id) {
           Weighing.update({id: id}, $scope.weighing,
             function () {
-              $scope.weighings = Weighing.query();
+              new PNotify({text: "<strong>brbr</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});    
               $scope.clear();
             });
         } else {
           Weighing.save($scope.weighing,
             function () {
-              $scope.weighings = Weighing.query();
+              new PNotify({text: "<strong>BRBR</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});    
               $scope.clear();
             });
         }
@@ -48,37 +38,30 @@ angular.module('Danger')
           
           "id": ""
         };
+        $("#brinco").val("");
+        $("#peso").val("");
       };
 
-      $scope.open = function (id) {
-        var weighingSave = $modal.open({
-          templateUrl: 'weighing-save.html',
-          controller: WeighingSaveController,
-          resolve: {
-            weighing: function () {
-              return $scope.weighing;
-            }
-          }
-        });
-
-        weighingSave.result.then(function (entity) {
-          $scope.weighing = entity;
-          $scope.save(id);
-        });
-      };
-    }]);
-
-var WeighingSaveController =
-  function ($scope, $modalInstance, weighing) {
-    $scope.weighing = weighing;
-
-    
 
     $scope.ok = function () {
-      $modalInstance.close($scope.weighing);
+      var brinco = angular.uppercase($("#brinco").val());
+      var peso = $("#peso").val();  
+
+      if (brinco === "") {
+        return new PNotify({text: "Brinco inválido!", type: 'error', icon: '', delay: 2500});    
+      }
+      if (peso === "" || peso === ",") {
+        return new PNotify({text: "Peso inválido!", type: 'error', icon: '', delay: 2500});    
+      }            
+      
+      angular.extend($scope.weighing, {
+          weight: peso,
+          earring: brinco          
+        });      
+
+      $scope.save($scope.weighing.id);
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  };
+    $scope.clear();
+
+  }]);

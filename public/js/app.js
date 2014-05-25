@@ -10,7 +10,7 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
       controller: 'ctrlNewBull'
     }).
     when('/NewWeighing', {
-      templateUrl: 'templates/newweighing.html',
+      templateUrl: 'views/weighing/newweighing.html',
       controller: 'ctrlNewWeighing'
     }).      
     when('/ConBull', {
