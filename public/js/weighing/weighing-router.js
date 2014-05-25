@@ -12,4 +12,13 @@ angular.module('Danger')
           }]
         }
       })
+      .when('/ConAll', {
+        templateUrl: 'views/weighing/conall.html',
+        controller: 'ctrlConAll',
+        resolve:{
+          resolvedWeighing: ['Weighing', function (Weighing) {
+            return Weighing.query();
+          }]
+        }
+      })
     }]);

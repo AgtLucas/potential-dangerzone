@@ -18,11 +18,11 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
       controller: 'ctrlConBull'
     }).      
     when('/ConAll', {
-      templateUrl: 'templates/conall.html',
+      templateUrl: 'views/weighing/conall.html',
       controller: 'ctrlConAll'
     }).  
     when('/ConWeighing', {
-      templateUrl: 'templates/conweighing.html',
+      templateUrl: 'views/weighing/conweighing.html',
       controller: 'ctrlConWeighing'
     }).      
     otherwise({
