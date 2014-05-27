@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('ctrlNewWeighing', ['$scope', '$modal', 'Weighing',
-    function ($scope, $modal, Weighing) {
+  .controller('ctrlNewWeighing', ['$scope', 'Weighing', 'Weighing',
+    function ($scope, Weighing) {
 
       $("#brinco").mask("999999");
       $("#peso").mask("999.99");    
    
-      $scope.save = function (id) {
+      $scope.save = function (id) {                          
         if (id) {
           Weighing.update({id: id}, $scope.weighing,
             function () {

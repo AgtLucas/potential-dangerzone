@@ -6,7 +6,7 @@ angular.module('Danger')
       
       $scope.weighings = resolvedWeighing;       
 
-      $scope.merge = function(obj){         
+      $scope.merge = function(obj){        
         var retorno = [];                  
         for(var i = 0; i < obj.length; i++){          
           if($scope.percorre(retorno, obj[i].earring)){
@@ -24,7 +24,7 @@ angular.module('Danger')
       }; 
 
       $scope.mergeDate = function(data){
-        return (data.split("T")[0]).split("-")[1] + "/" + (data.split("T")[0]).split("-")[2];
+        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1];
       }
 
       $scope.percorre = function(array, valor){
