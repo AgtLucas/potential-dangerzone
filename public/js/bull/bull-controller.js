@@ -12,19 +12,12 @@ angular.module('Danger')
       });
 
       $scope.save = function (id) {
-        if (id) {
-          Bull.update({id: id}, $scope.bull,
-            function () {
-              new PNotify({text: "<strong>" + id + "</strong> alterado com sucesso!", type: 'success', icon: '', delay: 2500});
-              $scope.clear();
-            });
-        } else {
+          $scope.bull.id = id;
           Bull.save($scope.bull,
             function () {
               new PNotify({text: "<strong>" + $scope.bull.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
               $scope.clear();
             });
-        }
       };
 
       $scope.clear = function () {
@@ -59,7 +52,7 @@ angular.module('Danger')
           birthday: $scope.nascimentoBanco(nascimento)
         });
 
-        $scope.save($scope.bull.id);
+        $scope.save($scope.bull.earring);
       };
 
       $scope.clear();

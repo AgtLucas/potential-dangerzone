@@ -7,20 +7,13 @@ angular.module('Danger')
       $("#brinco").mask("999999");
       $("#peso").mask("999.99");
 
-      $scope.save = function (id) {
-        if (id) {
-          Weighing.update({id: id}, $scope.weighing,
-            function () {
-              new PNotify({text: "<strong>" + $scope.weighing.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
-              $scope.clear();
-            });
-        } else {
-          Weighing.save($scope.weighing,
-            function () {
-              new PNotify({text: "<strong>" + $scope.weighing.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
-              $scope.clear();
-            });
-        }
+      $scope.save = function (earring) {
+        $scope.weighing.BullId = earring;
+        Weighing.save($scope.weighing,
+           function () {
+             new PNotify({text: "<strong>" + $scope.weighing.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
+             $scope.clear();
+           });
       };
 
       /*$scope.getId = function(){
@@ -41,7 +34,7 @@ angular.module('Danger')
 
           "id": "",
 
-          "BullId": "4"
+          "BullId": ""
         };
         $("#brinco").val("");
         $("#peso").val("");
@@ -64,7 +57,7 @@ angular.module('Danger')
           earring: brinco
         });
 
-      $scope.save($scope.weighing.id);
+      $scope.save($scope.weighing.earring);
     };
 
     $scope.clear();

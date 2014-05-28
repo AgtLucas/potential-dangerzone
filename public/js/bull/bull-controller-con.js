@@ -9,13 +9,11 @@ angular.module('Danger')
       $scope.bulls = resolvedBull;
 
       $scope.save = function (earring) {
-        if (earring) {
-          Bull.update({earring: earring}, $scope.bull,
-            function () {
-              new PNotify({text: "<strong>" + earring + "</strong> abatido com sucesso!", type: 'success', icon: '', delay: 2500});
-              $scope.clear();
-            });
-        }
+        Bull.update({earring: earring}, $scope.bull,
+           function () {
+             new PNotify({text: "<strong>" + earring + "</strong> abatido com sucesso!", type: 'success', icon: '', delay: 2500});
+             $scope.clear();
+           });
       };
 
       $scope.situacao = function(situacao){
