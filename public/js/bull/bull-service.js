@@ -2,9 +2,10 @@
 
 angular.module('Danger')
   .factory('Bull', ['$resource', function ($resource) {
-    return $resource('Danger/bulls/:id', {}, {
+    return $resource('Danger/bulls/:earring', {}, {
       'query': { method: 'GET', isArray: true},
       'get': { method: 'GET'},
-      'update': { method: 'PUT'}
+      'update': { method: 'PUT'},
+      'create': { method: 'POST'}
     });
   }]);

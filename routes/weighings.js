@@ -16,7 +16,7 @@ exports.find = function(req, res) {
   })
 }
 
-exports.create = function(req, res) { 
+exports.create = function(req, res) {
   db.Weighing.create(req.body).success(function(entity) {
     res.statusCode = 201
     res.json(entity)

@@ -50,8 +50,8 @@ module.exports = function(sequelize, DataTypes) {
         return value ? value.toISOString().substring(0, 10) : value
       }
     },
-  },
-  {
+  }
+  , {
     classMethods: {
       associate: function(models) {
         Bull.hasMany(models.Weighing)

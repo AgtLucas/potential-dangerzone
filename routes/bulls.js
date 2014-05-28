@@ -1,19 +1,14 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-  db.Bull.findAll({
-    include: [ db.Weighing ]
-  }).success(function(entities) {
-    res.render('findAll', {
-      title: "Express",
-      entities: entities
-    })
+
+  db.Bull.findAll({ include: [ db.Weighing ] }).success(function(entities) {
+    res.json(entities)
   })
 }
 
-
 exports.find = function(req, res) {
-  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
+  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
     if (entity) {
       res.json(entity)
     } else {
@@ -30,7 +25,7 @@ exports.create = function(req, res) {
 }
 
 exports.update = function(req, res) {
-  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
+  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
     if (entity) {
       entity.updateAttributes(req.body).success(function(entity) {
         res.json(entity)
@@ -42,7 +37,7 @@ exports.update = function(req, res) {
 }
 
 exports.destroy = function(req, res) {
-  db.Bull.find({ where: { id: req.param('id') } }).success(function(entity) {
+  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
     if (entity) {
       entity.destroy().success(function() {
         res.send(204)
