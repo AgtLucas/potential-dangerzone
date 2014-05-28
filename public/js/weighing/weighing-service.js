@@ -5,6 +5,7 @@ angular.module('Danger')
     return $resource('Danger/weighings/:id', {}, {
       'query': { method: 'GET', isArray: true},
       'get': { method: 'GET'},
-      'update': { method: 'PUT'}
+      'update': { method: 'PUT'},
+      'find': { method: 'GET'}
     });
   }]);

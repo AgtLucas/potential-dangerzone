@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('ctrlNewWeighing', ['$scope', 'Weighing', 'Weighing',
+  .controller('ctrlNewWeighing', ['$scope', 'Weighing',
     function ($scope, Weighing) {
 
       $("#brinco").mask("999999");
       $("#peso").mask("999.99");    
    
-      $scope.save = function (id) {                          
+      $scope.save = function (id) {                                
         if (id) {
           Weighing.update({id: id}, $scope.weighing,
             function () {
               new PNotify({text: "<strong>" + $scope.weighing.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});    
-              $scope.clear();
+              $scope.clear();            
             });
         } else {
           Weighing.save($scope.weighing,
@@ -22,6 +22,15 @@ angular.module('Danger')
             });
         }
       };
+
+      /*$scope.getId = function(){
+        Weighing.find({id: 13}, $scope.weighing,
+          function (,b,c) {              
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        });        
+      };*/
 
       $scope.clear = function () {
         $scope.weighing = {

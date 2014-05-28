@@ -1,8 +1,13 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-  db.Bull.findAll().success(function(entities) {
-    res.json(entities)
+  db.Bull.findAll({
+    include: [ db.Weighing ]
+  }).success(function(entities) {    
+    res.render('findAll', {
+      'title': "Express",
+      'weighing': entities
+    })
   })
 }
 
