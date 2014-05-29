@@ -6,8 +6,15 @@ angular.module('Danger')
 
       $scope.bulls = resolvedBull;
 
-      $("#brinco").mask("999999");
+
+      $scope.configearring = {
+        formatNoMatches: function() {
+          return "Nenhum brinco encontrado!";
+        }
+      };
+
       $("#peso").mask("999.99");
+      $scope.earring = "0";
 
       $scope.save = function (earring) {
         $scope.weighing.BullId = earring;
@@ -17,15 +24,6 @@ angular.module('Danger')
              $scope.clear();
            });
       };
-
-      /*$scope.getId = function(){
-        Weighing.find({id: 13}, $scope.weighing,
-          function (,b,c) {
-            console.log(a);
-            console.log(b);
-            console.log(c);
-        });
-      };*/
 
       $scope.clear = function () {
         $scope.weighing = {
@@ -38,16 +36,16 @@ angular.module('Danger')
 
           "BullId": ""
         };
-        $("#brinco").val("");
+        $scope.earring = "0";
         $("#peso").val("");
       };
 
 
     $scope.ok = function () {
-      var brinco = angular.uppercase($("#brinco").val());
+
       var peso = $("#peso").val();
 
-      if (brinco === "") {
+      if ($scope.earring === "0") {
         return new PNotify({text: "Brinco inválido!", type: 'error', icon: '', delay: 2500});
       }
       if (peso === "" || peso === ",") {
@@ -56,7 +54,7 @@ angular.module('Danger')
 
       angular.extend($scope.weighing, {
           weight: peso,
-          earring: brinco
+          earring: $scope.earring
         });
 
       $scope.save($scope.weighing.earring);

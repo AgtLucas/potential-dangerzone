@@ -1,4 +1,4 @@
-angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
+angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'ui.select2'])
   .config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
     when('/Home', {
@@ -12,19 +12,19 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
     when('/NewWeighing', {
       templateUrl: 'views/weighing/newweighing.html',
       controller: 'ctrlNewWeighing'
-    }).      
+    }).
     when('/ConBull', {
       templateUrl: 'views/bull/conbull.html',
       controller: 'ctrlConBull'
-    }).      
+    }).
     when('/ConAll', {
       templateUrl: 'views/weighing/conall.html',
       controller: 'ctrlConAll'
-    }).  
+    }).
     when('/ConWeighing', {
       templateUrl: 'views/weighing/conweighing.html',
       controller: 'ctrlConWeighing'
-    }).      
+    }).
     otherwise({
       redirectTo: '/Home'
 	});

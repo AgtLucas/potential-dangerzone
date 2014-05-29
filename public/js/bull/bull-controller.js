@@ -2,7 +2,7 @@
 
 angular.module('Danger')
   .controller('ctrlNewBull', ['$scope', '$modal', 'Bull',
-    function ($scope, $modal, Bull) {
+    function ($scope, $modal, Bull, $timeout) {
 
       $("#brinco").mask("999999");
 
@@ -21,15 +21,15 @@ angular.module('Danger')
             });
       };
 
-      $scope.findByEarring = function(earring){
+      $scope.findByEarring = function(obj, earring){
         var retorno = false;
         Bull.find({id: earring}, $scope.bull,
           function (a,b,c) {
             if(a.length > 0){
-              returno = true;
+              retorno = true;
             }            ;
         });
-        return retorno;
+        $scope.save(obj, retorno);
       };
 
       $scope.clear = function () {
@@ -64,8 +64,8 @@ angular.module('Danger')
           birthday: $scope.nascimentoBanco(nascimento)
         });
 
-        var param = $scope.findByEarring(brinco);
-        $scope.save($scope.bull.earring, param);
+        $scope.findByEarring($scope.bull.earring, brinco);
+
       };
 
       $scope.clear();
