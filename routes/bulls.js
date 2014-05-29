@@ -1,7 +1,6 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-
   db.Bull.findAll({ include: [ db.Weighing ] }).success(function(entities) {
     res.json(entities)
   })
@@ -21,6 +20,8 @@ exports.create = function(req, res) {
   db.Bull.create(req.body).success(function(entity) {
     res.statusCode = 201
     res.json(entity)
+  }).error(function(entity){
+    return "Fabricio"
   })
 }
 

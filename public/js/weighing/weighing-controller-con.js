@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('ctrlConAll', ['$scope', 'Weighing', 'resolvedWeighing',
-    function ($scope, Weighing, resolvedWeighing) {
+  .controller('ctrlConAll', ['$scope', 'resolvedBull', 'Bull',
+    function ($scope, resolvedBull, Bull) {
 
-      $scope.weighings = resolvedWeighing;
+      $scope.bulls = resolvedBull;
 
       $scope.merge = function(obj){
         var retorno = [];
@@ -20,7 +20,6 @@ angular.module('Danger')
           }
         }
         $scope.myweighings = retorno;
-        console.log(retorno);
       };
 
       $scope.mergeDate = function(data){
@@ -38,7 +37,6 @@ angular.module('Danger')
       };
 
       $scope.inicializar = function(){
-        console.log($scope.weighings);
         $scope.merge($scope.weighings);
       }
 
@@ -69,24 +67,23 @@ angular.module('Danger')
 
         doc.setFontSize(10);
 
-        for(var i = 0; $scope.myweighings.length > i; i++){
+        for(var i = 0; $scope.bulls.length > i; i++){
           doc.text(coluna[_coluna], linha - 5, "Brinco");
-          doc.text(coluna[_coluna], linha, ($scope.myweighings[i].earring).toString());
+          doc.text(coluna[_coluna], linha, ($scope.bulls[i].earring).toString());
           _coluna++;
-          for(var o = 0; $scope.myweighings[i].weighings.length > o; o++){
-            doc.text(coluna[_coluna], linha - 5, $scope.myweighings[i].weighings[o].date);
-            doc.text(coluna[_coluna], linha, ($scope.myweighings[i].weighings[o].weight).toString());
+          for(var o = 0; $scope.bulls[i].weighings.length > o; o++){
+            doc.text(coluna[_coluna], linha - 5, $scope.bulls[i].weighings[o].createdAt.split("T")[0].split("-")[2] + "/" + $scope.bulls[i].weighings[o].createdAt.split("T")[0].split("-")[1]);
+            doc.text(coluna[_coluna], linha, ($scope.bulls[i].weighings[o].weight).toString());
             if(o > 0){
               _coluna++;
-              console.log(_coluna);
               doc.text(coluna[_coluna], (linha - 5), "Evolução");
-              doc.text(coluna[_coluna], linha, $scope.evolucao($scope.myweighings[i].weighings[o-1].weight, $scope.myweighings[i].weighings[o].weight));
+              doc.text(coluna[_coluna], linha, $scope.evolucao($scope.bulls[i].weighings[o-1].weight, $scope.bulls[i].weighings[o].weight));
             }
             _coluna++;
           }
           doc.setFontType("bold");
           doc.text(coluna[coluna.length - 1], linha - 5, "Total");
-          doc.text(coluna[coluna.length - 1], linha, $scope.evolucao($scope.myweighings[i].weighings[0].weight, $scope.myweighings[i].weighings[$scope.myweighings[i].weighings.length - 1].weight));
+          doc.text(coluna[coluna.length - 1], linha, $scope.evolucao($scope.bulls[i].weighings[0].weight, $scope.bulls[i].weighings[$scope.bulls[i].weighings.length - 1].weight));
           doc.setFontType("normal");
 
           if ((i === 10) || (i % 11 === 0 && i !== 0 && i !== 11)) {

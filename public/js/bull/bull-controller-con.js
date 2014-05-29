@@ -9,10 +9,9 @@ angular.module('Danger')
       $scope.bulls = resolvedBull;
 
       $scope.save = function (earring) {
-        Bull.save({earring: earring}, $scope.bull,
+        Bull.update({earring: earring}, $scope.bull,
            function () {
              new PNotify({text: "<strong>" + earring + "</strong> abatido com sucesso!", type: 'success', icon: '', delay: 2500});
-             $scope.clear();
            });
       };
 
@@ -25,8 +24,10 @@ angular.module('Danger')
 
       $scope.abater = function(obj){
         $scope.bull = obj;
+        var date = new Date();
         angular.extend($scope.bull, {
-          status: 2
+          status: 2,
+          slaughter: (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()).toString()
         });
         $scope.save(obj.earring);
       };
@@ -52,14 +53,14 @@ angular.module('Danger')
         doc.setFontSize(11);
 
         var linha = 55;
-        var coluna = [10,60,125];
+        var coluna = [10,60,145];
         var _coluna = 0;
 
         doc.setFontSize(12);
         doc.setFontType("bold");
         doc.text(10, 45, "Brinco");
         doc.text(60, 45, "Data de Nascimento");
-        doc.text(125, 45, "Situacao");
+        doc.text(145, 45, "Situacao");
         doc.setFontType("normal");
 
         $scope.bulls = $scope.bulls.sort(function (a, b) {

@@ -1,5 +1,6 @@
 'use strict';
 
+var TESTE = "";
 angular.module('Danger')
   .controller('ctrlNewBull', ['$scope', '$modal', 'Bull',
     function ($scope, $modal, Bull, $timeout) {
@@ -12,14 +13,14 @@ angular.module('Danger')
       });
 
       $scope.save = function (id, type) {
-        alert(type);
           $scope.bull.id = id;
           Bull.save($scope.bull,
             function () {
               new PNotify({text: "<strong>" + $scope.bull.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
               $scope.clear();
-            });
+           });
       };
+
 
       $scope.findByEarring = function(obj, earring){
         var retorno = false;

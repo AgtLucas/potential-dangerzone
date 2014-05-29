@@ -16,8 +16,8 @@ angular.module('Danger')
         templateUrl: 'views/weighing/conall.html',
         controller: 'ctrlConAll',
         resolve:{
-          resolvedWeighing: ['Weighing', function (Weighing) {
-            return Weighing.query();
+          resolvedBull: ['Bull', function (Bull) {
+            return Bull.query();
           }]
         }
       })

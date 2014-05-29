@@ -1,44 +1,41 @@
 <div class="starter-template">
 	<div class="col-sm-12">
 		<div class="row">
-			<button type="button" class="btn btn-success" ng-click="inicializar()">
-				<em class="glyphicon glyphicon-floppy-open"></em>&nbsp;&nbsp;Carregar
-			</button>
 			<button type="button" class="btn btn-primary" ng-click="gerarPDF()">
 				<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
 			</button>
 		</div>
-		<br />		
-		<table class="table table-bordered table-condensed" ng-repeat="obj in myweighings">						
+		<br />
+		<table class="table table-bordered table-condensed" ng-repeat="obj in bulls">
 			<thead>
 				<tr>
-					<th class="text-center table-brinco">Brinco</th>					
-					<th class="text-center">Pesagens</th>										
+					<th class="text-center table-brinco">Brinco</th>
+					<th class="text-center">Pesagens</th>
 					<th class="text-center table-total">Total</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="table-brinco">{{obj.earring}}</td>			
-					<td class="text-center td-pesagem">						
+					<td class="table-brinco">{{obj.earring}}</td>
+					<td class="text-center td-pesagem">
 						<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in obj.weighings" >
 							<thead>
 								<tr>
-									<th class="text-center">{{pesos.date}}</th>									
+									<th class="text-center">{{mergeDate(pesos.createdAt)}}</th>
 									<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>									
+								<tr>
 									<td class="text-center">{{pesos.weight}}</td>
 									<td ng-show="$index > 0" class="text-center">{{evolucao(obj.weighings[$index - 1].weight, obj.weighings[$index].weight)}}</td>
 								</tr>
 							</tbody>
-						</table>						
-					</td>																
-					<td class="table-total">{{evolucao(obj.weighings[0].weight, obj.weighings[obj.weighings.length - 1].weight)}}</td>
+						</table>
+					</td>
+					<td class="table-total">{{evolucao(obj.weighings[0].weight || 0, obj.weighings[obj.weighings.length - 1].weight || 0)}}</td>
 				</tr>
 			</tbody>
-		</table>		
-	</div>	
+		</table>
+	</div>
 </div>
