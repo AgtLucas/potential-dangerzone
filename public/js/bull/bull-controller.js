@@ -11,13 +11,25 @@ angular.module('Danger')
         format: "dd/mm/yyyy"
       });
 
-      $scope.save = function (id) {
+      $scope.save = function (id, type) {
+        alert(type);
           $scope.bull.id = id;
           Bull.save($scope.bull,
             function () {
               new PNotify({text: "<strong>" + $scope.bull.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
               $scope.clear();
             });
+      };
+
+      $scope.findByEarring = function(earring){
+        var retorno = false;
+        Bull.find({id: earring}, $scope.bull,
+          function (a,b,c) {
+            if(a.length > 0){
+              returno = true;
+            }            ;
+        });
+        return retorno;
       };
 
       $scope.clear = function () {
@@ -52,7 +64,8 @@ angular.module('Danger')
           birthday: $scope.nascimentoBanco(nascimento)
         });
 
-        $scope.save($scope.bull.earring);
+        var param = $scope.findByEarring(brinco);
+        $scope.save($scope.bull.earring, param);
       };
 
       $scope.clear();

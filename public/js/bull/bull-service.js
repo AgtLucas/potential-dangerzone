@@ -6,6 +6,7 @@ angular.module('Danger')
       'query': { method: 'GET', isArray: true},
       'get': { method: 'GET'},
       'update': { method: 'PUT'},
-      'create': { method: 'POST'}
+      'create': { method: 'POST'},
+      'find': { method: 'GET', isArray: true}
     });
   }]);

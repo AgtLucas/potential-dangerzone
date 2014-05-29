@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('ctrlNewWeighing', ['$scope', 'Weighing',
-    function ($scope, Weighing) {
+  .controller('ctrlNewWeighing', ['$scope', 'Weighing', 'resolvedBull','Bull',
+    function ($scope, Weighing, resolvedBull, Bull) {
+
+      $scope.bulls = resolvedBull;
 
       $("#brinco").mask("999999");
       $("#peso").mask("999.99");

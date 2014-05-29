@@ -7,11 +7,14 @@
  		<div class="form-group">
    		<label class="pull-left">Peso</label>
   		<input type="text" class="form-control" placeholder="Peso" id="peso">
+      <select ng-model="teste">
+        <option ng-repeat='obj in bulls'>{{obj}}</options>
+      </select>
  		</div>
  		<div class="pull-left">
 			<button type="button" class="btn btn-success" ng-click="ok()">
 				<em class="glyphicon glyphicon-ok"></em>&nbsp;&nbsp;Salvar
-			</button>			
-		</div>		
-	</div>	
+			</button>
+		</div>
+	</div>
 </div>

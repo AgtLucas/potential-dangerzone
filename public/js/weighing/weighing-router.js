@@ -7,8 +7,8 @@ angular.module('Danger')
         templateUrl: 'views/weighing/newweighing.html',
         controller: 'ctrlNewWeighing',
         resolve:{
-          resolvedWeighing: ['Weighing', function (Weighing) {            
-            return Weighing.query();
+          resolvedBull: ['Bull', function (Bull) {
+            return Bull.query();
           }]
         }
       })
@@ -16,7 +16,7 @@ angular.module('Danger')
         templateUrl: 'views/weighing/conall.html',
         controller: 'ctrlConAll',
         resolve:{
-          resolvedWeighing: ['Weighing', function (Weighing) {            
+          resolvedWeighing: ['Weighing', function (Weighing) {
             return Weighing.query();
           }]
         }
