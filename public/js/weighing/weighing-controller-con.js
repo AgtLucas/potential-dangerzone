@@ -42,6 +42,9 @@ angular.module('Danger')
 
 
       $scope.evolucao = function(peso1, peso2) {
+        if(isNaN((((parseInt(peso2) - parseInt(peso1)) * 100) / parseInt(peso1)).toFixed(0))){
+          return (parseInt(peso2) - parseInt(peso1)) + " Kg" + " - " + 0 + "%";
+        }
         return (parseInt(peso2) - parseInt(peso1)) + " Kg" + " - " + (((parseInt(peso2) - parseInt(peso1)) * 100) / parseInt(peso1)).toFixed(0) + "%";
       };
 
