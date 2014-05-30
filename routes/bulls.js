@@ -21,6 +21,7 @@ exports.create = function(req, res) {
     res.statusCode = 201
     res.json(entity)
   }).error(function(entity){
+
   })
 }
 

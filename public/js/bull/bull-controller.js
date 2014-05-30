@@ -13,13 +13,24 @@ angular.module('Danger')
       });
 
       $scope.save = function (id, type) {
+          var retorno = false;
           $scope.bull.id = id;
           Bull.save($scope.bull,
             function () {
+              retorno = true;
               new PNotify({text: "<strong>" + $scope.bull.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
               $scope.clear();
-           });
+           })
+
+          setTimeout(function(){
+            if(!retorno){
+              new PNotify({text: "Brinco já cadastrado!", type: 'error', icon: '', delay: 2500});
+            }
+          }, 1000)
+
+
       };
+
 
 
       $scope.findByEarring = function(obj, earring){
