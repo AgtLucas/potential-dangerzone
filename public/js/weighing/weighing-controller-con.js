@@ -86,7 +86,12 @@ angular.module('Danger')
           }
           doc.setFontType("bold");
           doc.text(coluna[coluna.length - 1], linha - 5, "Total");
-          doc.text(coluna[coluna.length - 1], linha, $scope.evolucao($scope.bulls[i].weighings[0].weight, $scope.bulls[i].weighings[$scope.bulls[i].weighings.length - 1].weight));
+          if($scope.bulls[i].weighings.length > 0){
+            doc.text(coluna[coluna.length - 1], linha, $scope.evolucao($scope.bulls[i].weighings[0].weight, $scope.bulls[i].weighings[$scope.bulls[i].weighings.length - 1].weight));
+          }else{
+            doc.text(coluna[coluna.length - 1], linha, $scope.evolucao(0, 0));
+          }
+
           doc.setFontType("normal");
 
           if ((i === 10) || (i % 11 === 0 && i !== 0 && i !== 11)) {
