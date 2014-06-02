@@ -20,4 +20,13 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
         }]
       }
     })
+    .when('/ConWeighing', {
+      templateUrl: 'views/weighing/conweighing.html',
+      controller: 'ctrlConWeighing',
+      resolve:{
+        resolvedBull: ['Bull', function (Bull) {
+          return Bull.query();
+        }]
+      }
+    })
 }]);

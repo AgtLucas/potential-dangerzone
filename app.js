@@ -28,7 +28,7 @@ if ('development' === app.get('env')) {
 
 
 app.get('/Danger/bulls', bulls.findAll)
-app.get('/Danger/bulls/:earring', bulls.find)
+app.get('/Danger/bulls', bulls.find)
 app.post('/Danger/bulls', bulls.create)
 app.put('/Danger/bulls/:earring', bulls.update)
 app.del('/Danger/bulls/:earring', bulls.destroy)

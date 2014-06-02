@@ -1,49 +1,46 @@
 <div class="starter-template">
 	<div class="col-sm-6">
-		<div class="form-group">
-   			<label class="pull-left">Brinco</label>
-  			<input type="text" class="form-control" placeholder="Número do brinco" ng-model="brinco"/>
-	 	</div> 		
- 		<div class="pull-left">			
-			<button type="button" class="btn btn-primary" ng-click="pesquisar()">
-				<em class="glyphicon glyphicon-search"></em>&nbsp;&nbsp;Buscar
-			</button>
-		</div>							
-	</div>		
+		<div class="form-group" style="text-align: left">
+   		<label class="pull-left">Brinco</label>
+  		<select ng-model="earring" style="width: 100%" class="pull-left" ui-select2="configearring" ng-click="pesquisar(earring)">
+        <option value="0">Selecione</option>
+        <option ng-show="obj.status == 1" ng-repeat="obj in bulls" value="{{obj.id}}">{{obj.earring}}</option>
+      </select>
+	 	</div>
+	</div>
 	<div class="col-sm-12">
 		<br />
-		<div class="pull-left">
-			<h4>Brinco: {{bois.brinco}}</h4>
-		</div>			
-		<table class="table table-bordered table-condensed">						
+		<table class="table table-bordered table-condensed" ng-repeat="obj in bull">
 			<thead>
-				<tr>									
-					<th class="text-center">Pesagens</th>										
+				<tr>
+					<th class="text-center table-brinco">Brinco</th>
+					<th class="text-center">Pesagens</th>
 					<th class="text-center table-total">Total</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>							
-					<td class="text-center td-pesagem">						
-						<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in bois.pesos" >
+				<tr>
+					<td class="table-brinco">{{obj.earring}}</td>
+					<td class="text-center td-pesagem">
+						<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in obj.weighings" >
 							<thead>
 								<tr>
-									<th class="text-center">{{pesos.data}}</th>									
-									<th ng-show="$index > 0" class="text-center">Evolução</th>
+									<th class="text-center">{{mergeDate(pesos.createdAt)}}</th>
+									<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em>
+										&nbsp;&nbsp;{{mergeDay(mergeDate(obj.weighings[$index - 1].createdAt), mergeDate(obj.weighings[$index].createdAt))}} Dias</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>									
-									<td class="text-center">{{pesos.peso}}</td>
-									<td ng-show="$index > 0" class="text-center">{{evolucao(bois.pesos[$index - 1].peso, bois.pesos[$index].peso)}}</td>
+								<tr>
+									<td class="text-center">{{pesos.weight}}</td>
+									<td ng-show="$index > 0" class="text-center">{{evolucao(obj.weighings[$index - 1].weight, obj.weighings[$index].weight)}}</td>
 								</tr>
 							</tbody>
 						</table>
-						{{pesos.peso}}
-					</td>																
-					<td class="table-total">{{evolucao(bois.pesos[0].peso, bois.pesos[bois.pesos.length - 1].peso)}}</td>
+					</td>
+					<td class="table-total">{{evolucao(obj.weighings[0].weight || 0, obj.weighings[obj.weighings.length - 1].weight || 0)}}</td>
 				</tr>
 			</tbody>
-		</table>				
+		</table>
 	</div>
 </div>

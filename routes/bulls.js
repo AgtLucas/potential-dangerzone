@@ -1,13 +1,19 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-  db.Bull.findAll({ include: [ db.Weighing ] }).success(function(entities) {
-    res.json(entities)
-  })
+  if(!req.param('id')){
+    db.Bull.findAll({ include: [ db.Weighing ] }).success(function(entities) {
+      res.json(entities)
+    })
+  }else{
+    db.Bull.findAll({ where: { earring: req.param('id') }, include: [ db.Weighing ] }).success(function(entities) {
+      res.json(entities)
+    })
+  }
 }
 
 exports.find = function(req, res) {
-  db.Bull.find({ where: { earring: req.param('earring') } }).success(function(entity) {
+  db.Bull.find({ where: { earring: req.param('earring') }, include: [ db.Weighing ] }).success(function(entity) {
     if (entity) {
       res.json(entity)
     } else {

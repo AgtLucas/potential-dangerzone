@@ -22,7 +22,8 @@
 							<thead>
 								<tr>
 									<th class="text-center">{{mergeDate(pesos.createdAt)}}</th>
-									<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em></th>
+									<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em>
+										&nbsp;&nbsp;{{mergeDay(mergeDate(obj.weighings[$index - 1].createdAt), mergeDate(obj.weighings[$index].createdAt))}} Dias</th>
 								</tr>
 							</thead>
 							<tbody>

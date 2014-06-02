@@ -6,25 +6,19 @@ angular.module('Danger')
 
       $scope.bulls = resolvedBull;
 
-      $scope.merge = function(obj){
-        var retorno = [];
-        for(var i = 0; i < obj.length; i++){
-          if($scope.percorre(retorno, obj[i].earring)){
-            retorno.push({ 'earring': obj[i].earring, 'weighings': [{ 'weight': obj[i].weight, "date": $scope.mergeDate(obj[i].createdAt) }]});
-          }else{
-            for(var o = 0; o < retorno.length; o++){
-              if(retorno[o].earring == obj[i].earring){
-                 retorno[o].weighings.push({'weight': obj[i].weight, "date": $scope.mergeDate(obj[i].createdAt)});
-              }
-            }
-          }
-        }
-        $scope.myweighings = retorno;
-      };
-
       $scope.mergeDate = function(data){
-        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1];
+        if(!!data){
+          return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1];
+        }else{
+          return "";
+        }
       }
+
+      $scope.mergeDay = function(data1, data2){
+        data1 = new Date("2014-" + data1.split("/")[1] + "-" +data1.split("/")[0]);
+        data2 = new Date("2014-" + data2.split("/")[1] + "-" +data2.split("/")[0]);
+        return ((data2 - data1) / (24 * 60 * 60 * 1000));
+      };
 
       $scope.percorre = function(array, valor){
         var flag = true;
@@ -35,11 +29,6 @@ angular.module('Danger')
         }
         return flag;
       };
-
-      $scope.inicializar = function(){
-        $scope.merge($scope.weighings);
-      }
-
 
       $scope.evolucao = function(peso1, peso2) {
         if(isNaN((((parseInt(peso2) - parseInt(peso1)) * 100) / parseInt(peso1)).toFixed(0))){
