@@ -7,6 +7,7 @@ angular.module('Danger').controller('ctrlNewBull', ['$scope', '$modal', 'Bull', 
     autoclose: true,
     format: "dd/mm/yyyy"
   });
+  $scope.viewbutton = false;
 
   $scope.save = function (id, type) {
     var retorno = false;
@@ -15,10 +16,15 @@ angular.module('Danger').controller('ctrlNewBull', ['$scope', '$modal', 'Bull', 
     function () {
       retorno = true;
       new PNotify({text: "<strong>" + $scope.bull.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
+      $scope.viewbutton = false;
       $scope.clear();
     })
     setTimeout(function(){
       if(!retorno){
+        $scope.viewbutton = false;
+        if (!$scope.$$phase) {
+          $scope.$apply();
+        }
         new PNotify({text: "Brinco já cadastrado!", type: 'error', icon: '', delay: 2500});
       }
     }, 1000)
@@ -45,12 +51,15 @@ angular.module('Danger').controller('ctrlNewBull', ['$scope', '$modal', 'Bull', 
   }
 
   $scope.ok = function () {
+    $scope.viewbutton = true;
     var brinco = angular.uppercase($("#brinco").val());
     var nascimento = $("#nascimento").val();
     if (brinco === "") {
+      $scope.viewbutton = false;
       return new PNotify({text: "Brinco inválido!", type: 'error', icon: '', delay: 2500});
     }
     if (nascimento === "") {
+      $scope.viewbutton = false;
       return new PNotify({text: "Data de nascimento inválida!", type: 'error', icon: '', delay: 2500});
     }
     angular.extend($scope.bull, {
