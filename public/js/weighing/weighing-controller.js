@@ -10,12 +10,15 @@ angular.module('Danger').controller('ctrlNewWeighing', ['$scope', 'Weighing', 'r
   };
   $("#peso").mask("999.99");
   $scope.earring = "0";
+  $scope.viewbutton = false;
 
   $scope.save = function (earring) {
+    $scope.viewbutton = true;
     $scope.weighing.BullId = earring;
     Weighing.save($scope.weighing,
     function () {
       new PNotify({text: "<strong>" + $scope.weighing.earring + "</strong> salvo com sucesso!", type: 'success', icon: '', delay: 2500});
+      $scope.viewbutton = false;
       $scope.clear();
     });
   };
@@ -27,11 +30,14 @@ angular.module('Danger').controller('ctrlNewWeighing', ['$scope', 'Weighing', 'r
   };
 
   $scope.ok = function () {
+    $scope.viewbutton = true;
     var peso = $("#peso").val();
     if ($scope.earring === "0") {
+      $scope.viewbutton = false;
       return new PNotify({text: "Brinco inválido!", type: 'error', icon: '', delay: 2500});
     }
     if (peso === "" || peso === ",") {
+      $scope.viewbutton = false;
       return new PNotify({text: "Peso inválido!", type: 'error', icon: '', delay: 2500});
     }
     angular.extend($scope.weighing, {
