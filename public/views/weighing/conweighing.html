@@ -42,5 +42,24 @@
 				</tr>
 			</tbody>
 		</table>
+		<br />
+		<table class="table table-bordered table-condensed" ng-repeat="obj in bull[0].weighings" style="display: none">
+			<thead>
+				<tr>
+					<th class="text-center">Data</th>
+					<th class="text-center">Peso</th>
+					<th class="text-center">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="text-center">{{mergeDate(obj.createdAt)}}</td>
+					<td class="text-center">{{obj.weight}}</td>
+					<td class="text-center">
+						<button type="button" class="btn btn-danger btn-xs" ng-click="excluir(obj)">Excluir</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
