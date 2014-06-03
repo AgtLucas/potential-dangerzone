@@ -7,11 +7,14 @@ angular.module('Danger')
       $scope.bulls = resolvedBull;
       $scope.earring = "0";
       $scope.bull = {};
+      $scope.showview = false;
 
       $scope.pesquisar = function(earring){
+      $scope.showview = true;
       Bull.find({id: earring},
         function (a, b, c) {
           $scope.bull = a;
+          $scope.showview = false;
         });
       };
 

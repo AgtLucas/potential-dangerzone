@@ -2,7 +2,7 @@
 	<div class="col-sm-6">
 		<div class="form-group" style="text-align: left">
    		<label class="pull-left">Brinco</label>
-  		<select ng-model="earring" style="width: 100%" class="pull-left" ui-select2="configearring" ng-click="pesquisar(earring)">
+  		<select ng-model="earring" style="width: 100%" class="pull-left" ui-select2="configearring" ng-click="pesquisar(earring)" ng-disabled="showview">
         <option value="0">Selecione</option>
         <option ng-show="obj.status == 1" ng-repeat="obj in bulls" value="{{obj.id}}">{{obj.earring}}</option>
       </select>
