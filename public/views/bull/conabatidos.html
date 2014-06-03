@@ -4,6 +4,7 @@
 			<thead>
 				<tr>
 					<th class="text-center table-brinco">Brinco</th>
+					<th class="text-center" style="width: 170px">Data do Abatimento</th>
 					<th class="text-center" style>Primeira Pesagem</th>
 					<th class="text-center">Ultima Pesagem</th>
 					<th class="text-center table-total" style="width: 190px">Evolução</th>
@@ -12,6 +13,7 @@
 			<tbody>
 				<tr ng-repeat="obj in bulls | orderBy: earring">
 					<td class="table-brinco">{{obj.earring}}</td>
+					<td class="table-brinco" style="width: 170px">{{mergeDate(obj.slaughter || 0)}}</td>
 					<td class="text-center">{{obj.weighings[0].weight || '0.00'}}</td>
 					<td class="text-center">{{obj.weighings[obj.weighings.length - 1].weight || '0.00'}}</td>
 					<td class="table-total" style="width: 190px">
