@@ -16,7 +16,16 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
       controller: 'ctrlConBull',
       resolve:{
         resolvedBull: ['Bull', function (Bull) {
-          return Bull.query();
+          return Bull.query({status: 1});
+        }]
+      }
+    })
+    .when('/AbatidosBull', {
+      templateUrl: 'views/bull/conabatidos.html',
+      controller: 'ctrlAbatidosBull',
+      resolve:{
+        resolvedBull: ['Bull', function (Bull) {
+          return Bull.query({status: 2});
         }]
       }
     })

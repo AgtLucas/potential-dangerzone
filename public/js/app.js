@@ -25,6 +25,10 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'u
       templateUrl: 'views/weighing/conweighing.html',
       controller: 'ctrlConWeighing'
     }).
+    when('/AbatidosBull', {
+      templateUrl: 'views/bull/conabatidos.html',
+      controller: 'ctrlAbatidosBull'
+    }).
     otherwise({
       redirectTo: '/Home'
 	});

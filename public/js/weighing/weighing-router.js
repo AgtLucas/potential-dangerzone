@@ -7,7 +7,7 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
       controller: 'ctrlNewWeighing',
       resolve:{
         resolvedBull: ['Bull', function (Bull) {
-          return Bull.query();
+          return Bull.query({status: 1});
         }]
       }
     })
@@ -16,7 +16,7 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
       controller: 'ctrlConAll',
       resolve:{
         resolvedBull: ['Bull', function (Bull) {
-          return Bull.query();
+          return Bull.query({status: 1});
         }]
       }
     })

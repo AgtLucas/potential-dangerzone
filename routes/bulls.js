@@ -1,8 +1,12 @@
 var db = require('../models')
 
 exports.findAll = function(req, res) {
-  if(!req.param('id')){
+  if(!req.param('id') && !req.param('status')){
     db.Bull.findAll({ include: [ db.Weighing ] }).success(function(entities) {
+      res.json(entities)
+    })
+  }else if(req.param('status')){
+    db.Bull.findAll({ where: { status: req.param('status') }, include: [ db.Weighing ] }).success(function(entities) {
       res.json(entities)
     })
   }else{
