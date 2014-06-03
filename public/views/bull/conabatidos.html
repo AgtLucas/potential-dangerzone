@@ -14,8 +14,8 @@
 				<tr ng-repeat="obj in bulls | orderBy: earring">
 					<td class="table-brinco">{{obj.earring}}</td>
 					<td class="table-brinco" style="width: 170px">{{mergeDate(obj.slaughter || 0)}}</td>
-					<td class="text-center">{{obj.weighings[0].weight || '0.00'}}</td>
-					<td class="text-center">{{obj.weighings[obj.weighings.length - 1].weight || '0.00'}}</td>
+					<td class="text-center">{{obj.weighings[0].weight.toFixed(2) || '0.00'}}</td>
+					<td class="text-center">{{obj.weighings[obj.weighings.length - 1].weight.toFixed(2) || '0.00'}}</td>
 					<td class="table-total" style="width: 190px">
 						{{mergeDay(mergeDate(obj.weighings[0].createdAt || 0), mergeDate(obj.weighings[obj.weighings.length - 1].createdAt || 0))}} Dias -
 						{{evolucao(obj.weighings[0].weight || 0, obj.weighings[obj.weighings.length - 1].weight || 0)}}</td>

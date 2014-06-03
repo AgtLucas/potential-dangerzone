@@ -10,13 +10,6 @@ angular.module('Danger').controller('ctrlConBull', ['$scope', 'resolvedBull', 'B
     });
   };
 
-  $scope.situacao = function(situacao){
-    if(situacao === 1){
-      return "Vivo";
-    }
-    return "Abatido";
-  };
-
   $scope.abater = function(obj){
     $scope.bull = obj;
     var date = new Date();
@@ -48,13 +41,12 @@ angular.module('Danger').controller('ctrlConBull', ['$scope', 'resolvedBull', 'B
   $scope.popular = function(doc){
     doc.setFontSize(11);
     var linha = 55;
-    var coluna = [10,60,145];
+    var coluna = [10,150];
     var _coluna = 0;
     doc.setFontSize(12);
     doc.setFontType("bold");
     doc.text(10, 45, "Brinco");
-    doc.text(60, 45, "Data de Nascimento");
-    doc.text(145, 45, "Situacao");
+    doc.text(150, 45, "Data de Nascimento");
     doc.setFontType("normal");
     $scope.bulls = $scope.bulls.sort(function (a, b) {
       if (a.earring > b.earring){
@@ -71,7 +63,6 @@ angular.module('Danger').controller('ctrlConBull', ['$scope', 'resolvedBull', 'B
       _coluna++;
       doc.text(coluna[_coluna], linha, $scope.nascimento($scope.bulls[i].birthday).toString());
       _coluna++;
-      doc.text(coluna[_coluna], linha, $scope.situacao($scope.bulls[i].status).toString());
       if ((i === 23) || (i % 27 === 0 && i !== 0 && i !== 27)) {
         doc.addPage();
         linha = 10;

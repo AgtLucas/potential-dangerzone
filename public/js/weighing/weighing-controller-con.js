@@ -65,10 +65,11 @@ angular.module('Danger')
           _coluna++;
           for(var o = 0; $scope.bulls[i].weighings.length > o; o++){
             doc.text(coluna[_coluna], linha - 5, $scope.bulls[i].weighings[o].createdAt.split("T")[0].split("-")[2] + "/" + $scope.bulls[i].weighings[o].createdAt.split("T")[0].split("-")[1]);
-            doc.text(coluna[_coluna], linha, ($scope.bulls[i].weighings[o].weight).toString());
+            doc.text(coluna[_coluna], linha, ($scope.bulls[i].weighings[o].weight.toFixed(2)).toString());
             if(o > 0){
               _coluna++;
-              doc.text(coluna[_coluna], (linha - 5), "Evolução");
+              doc.text(coluna[_coluna], (linha - 5),
+                $scope.mergeDay($scope.mergeDate($scope.bulls[i].weighings[o-1].createdAt), $scope.mergeDate($scope.bulls[i].weighings[o].createdAt)).toString() + " Dias");
               doc.text(coluna[_coluna], linha, $scope.evolucao($scope.bulls[i].weighings[o-1].weight, $scope.bulls[i].weighings[o].weight));
             }
             _coluna++;

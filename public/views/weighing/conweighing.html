@@ -32,7 +32,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="text-center">{{pesos.weight}}</td>
+									<td class="text-center">{{pesos.weight.toFixed(2)}}</td>
 									<td ng-show="$index > 0" class="text-center">{{evolucao(obj.weighings[$index - 1].weight, obj.weighings[$index].weight)}}</td>
 								</tr>
 							</tbody>
