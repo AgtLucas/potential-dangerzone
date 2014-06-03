@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('Danger')
-  .controller('ctrlConWeighing', ['$scope', 'resolvedBull', 'Bull',
-    function ($scope, resolvedBull, Bull) {
+  .controller('ctrlConWeighing', ['$scope', 'resolvedBull', 'Bull', 'Weighing',
+    function ($scope, resolvedBull, Bull, Weighing) {
 
       $scope.bulls = resolvedBull;
       $scope.earring = "0";
@@ -30,7 +30,10 @@ angular.module('Danger')
       }
 
       $scope.excluir = function(obj){
-        console.log(obj);
+        Weighing.delete({id: obj.id},
+          function () {
+            $scope.pesquisar(obj.BullId);
+        });
       };
 
       $scope.evolucao = function(peso1, peso2) {
