@@ -14,6 +14,10 @@ angular.module('Danger')
         }
       }
 
+      $scope.nascimento = function(data){
+        return (data.split("-")[2] + "/" + data.split("-")[1] + "/" + data.split("-")[0]);
+      }
+
       $scope.mergeDay = function(data1, data2){
         if(data1 == "" || data2 == ""){
           return "0"
