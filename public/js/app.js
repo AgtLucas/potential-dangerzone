@@ -33,6 +33,10 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'u
       templateUrl: 'views/bull/bulls-charts.html',
       controller: 'ctrlChartsBull'
     }).
+    when('/ChartWeighing', {
+      templateUrl: 'views/weighing/weighing-charts.html',
+      controller: 'ctrlWeighingBull'
+    }).
     otherwise({
       redirectTo: '/Home'
 	});

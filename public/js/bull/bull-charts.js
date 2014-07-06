@@ -27,7 +27,7 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
       var chart = new CanvasJS.Chart("chartPie",
       {
         title:{
-          text: "Gráfico de Pizza",
+          text: "",
           fontFamily: "arial black"
         },
         legend: {
@@ -65,7 +65,7 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
     var chart = new CanvasJS.Chart("chartRow",
     {
       title:{
-        text: "Gráfico de Coluna"
+        text: ""
       },
       axisY: {
         title: ""

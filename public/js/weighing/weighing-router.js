@@ -29,4 +29,13 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
         }]
       }
     })
+    .when('/ChartWeighing', {
+      templateUrl: 'views/weighing/weighing-charts.html',
+      controller: 'ctrlWeighingBull',
+      resolve:{
+        resolvedBull: ['Bull', function (Bull) {
+          return Bull.query();
+        }]
+      }
+    })
 }]);
