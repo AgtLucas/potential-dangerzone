@@ -1,19 +1,17 @@
 'use strict';
 
-angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull', 'Bull', '$timeout', function ($scope, resolvedBull, Bull, $timeout) {
+angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull', 'Bull', function ($scope, resolvedBull, Bull) {
 
     $scope.bulls = resolvedBull;
 
-    $scope.$watch("bulls", function( newValue, oldValue ) {
-      $timeout(function(){
-        $scope.merge($scope.bulls);
-      });
-    });
+
+    $scope.gerarGraficos = function(){
+      $scope.merge($scope.bulls);
+    };
 
     $scope.merge = function(data){
       var vivos = 0,
           abatidos = 0;
-
       for(var i = 0; i < data.length; i++){
         if(data[i].status == 1){
           vivos = vivos + 1;
@@ -21,11 +19,8 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
           abatidos = abatidos + 1;
         }
       };
-
-
-        $scope.chartRow(vivos, abatidos);
-        $scope.chartPie(vivos, abatidos);
-
+      $scope.chartRow(vivos, abatidos);
+      $scope.chartPie(vivos, abatidos);
     };
 
     $scope.chartPie = function(vivos, abatidos){
@@ -63,9 +58,7 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
         }
         ]
       });
-      $timeout(function(){
-        chart.render();
-      });
+      chart.render();
     };
 
     $scope.chartRow = function(vivos, abatidos){
@@ -87,7 +80,7 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
       {
         type: "column",
         showInLegend: true,
-        legendMarkerColor: "",
+        legendMarkerColor: "gray",
         legendText: "Quantidade de bois",
         dataPoints: [
         {y: parseInt(vivos), label: "Vivos"},
@@ -96,9 +89,7 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
       }
       ]
     });
-    $timeout(function(){
-      chart.render();
-    });
+    chart.render();
   };
 
     $scope.calcular = function(v, a, q){
@@ -109,9 +100,4 @@ angular.module('Danger').controller('ctrlChartsBull', ['$scope', 'resolvedBull',
         return ((100 * a) / qtd).toFixed(2) || 0 + "%";
       }
     };
-
-    $scope.atualizar = function(){
-      window.location.reload();
-    };
-
 }]);
