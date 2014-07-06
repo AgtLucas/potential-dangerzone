@@ -1,4 +1,4 @@
-angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'ui.select2', 'googlechart'])
+angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'ui.select2'])
   .config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
     when('/Home', {
