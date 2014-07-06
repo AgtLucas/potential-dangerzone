@@ -1,4 +1,4 @@
-angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'ui.select2'])
+angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'ui.select2', 'googlechart'])
   .config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
     when('/Home', {
@@ -28,6 +28,10 @@ angular.module('Danger', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'u
     when('/AbatidosBull', {
       templateUrl: 'views/bull/conabatidos.html',
       controller: 'ctrlAbatidosBull'
+    }).
+    when('/ChartBull', {
+      templateUrl: 'views/bull/bulls-charts.html',
+      controller: 'ctrlChartsBull'
     }).
     otherwise({
       redirectTo: '/Home'

@@ -27,25 +27,27 @@
           <ul class="nav navbar-nav">
             <li><a href="#">Início</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boi <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#NewWeighing">Pesagem</a></li>
-                <li><a href="#NewBull">Boi</a></li>
+                <li><a href="#NewBull">Novo Boi</a></li>
+                <li><a href="#ConBull">Consulta Boi</a></li>
+                <li><a href="#AbatidosBull">Bois Abatidos</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesagem <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#ConAll">Pesagem Geral</a></li>
+                <li><a href="#NewWeighing">Nova Pesagem</a></li>
+                <li><a href="#ConAll">Consulta de Pesagem</a></li>
                 <li><a href="#ConWeighing">Pesagem Individual</a></li>
-                <li><a href="#ConBull">Boi</a></li>
-                <li><a href="#AbatidosBull">Abatidos</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gráficos<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Geral</a></li>
+                <li><a href="#ChartBull">Bois</a></li>
+                <li><a href="#">Pesagens</a></li>
+                <li><a href="#">Pesagens Individuais</a></li>
               </ul>
             </li>
           </ul>
@@ -74,10 +76,12 @@
     <script src="lib/pnotify/pnotify.custom.min.js"></script>
     <script src="lib/select2/js/select2.js"></script>
     <script src="lib/select2/js/select2-bootstrap.js"></script>
+    <script src="lib/chart/angular-google-api.js"></script>
     <script src="js/app.js"></script>
     <script src="js/home/home-controller.js"></script>
     <script src="js/bull/bull-controller.js"></script>
     <script src="js/bull/bull-controller-con.js"></script>
+    <script src="js/bull/bull-charts.js"></script>
     <script src="js/bull/bull-abatidos.js"></script>
     <script src="js/bull/bull-router.js"></script>
     <script src="js/bull/bull-service.js"></script>

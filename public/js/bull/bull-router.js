@@ -29,4 +29,13 @@ angular.module('Danger').config(['$routeProvider', function ($routeProvider) {
         }]
       }
     })
+    .when('/ChartBull', {
+      templateUrl: 'views/bull/bulls-charts.html',
+      controller: 'ctrlChartsBull',
+      resolve:{
+        resolvedBull: ['Bull', function (Bull) {
+          return Bull.query();
+        }]
+      }
+    })
 }]);

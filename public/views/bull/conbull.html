@@ -5,7 +5,7 @@
 				<input type="text" class="form-control" ng-model="expressao" placeholder="Expressão de consulta"/>
 			</div>
 			<div class="col-sm-2 col-xs-3" style="text-align: left">
-				<button type="button" class="btn btn-primary" ng-click="gerarPDF()">
+				<button type="button" class="btn btn-primary" ng-click="gerarPDF()" ng-disabled="!bulls.length > 0">
 					<em class="glyphicon glyphicon-file"></em><span class="hidden-xs">&nbsp;&nbsp;Gerar PDF</span>
 				</button>
 			</div>

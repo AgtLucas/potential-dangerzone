@@ -32,10 +32,19 @@ angular.module('Danger')
         }
       }
 
+      $scope.mergeDateComplete = function(data){
+        if(!!data){
+          return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1] + "/" + (data.split("T")[0]).split("-")[0];
+        }else{
+          return "";
+        }
+      }
+
       $scope.excluir = function(obj){
         Weighing.delete({id: obj.id},
           function () {
             $scope.pesquisar(obj.BullId);
+            new PNotify({text: "Peso <strong>" + obj.weight + "</strong> excluido com sucesso!", type: 'success', icon: '', delay: 2500});
         });
       };
 

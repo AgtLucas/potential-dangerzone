@@ -43,19 +43,19 @@
 			</tbody>
 		</table>
 		<br />
-		<table class="table table-bordered table-condensed" ng-show="bull[0].weighings.length > 0" style="display: none">
+		<table class="table table-bordered table-condensed" ng-show="bull[0].weighings.length > 0">
 			<thead>
 				<tr>
 					<th class="text-center">Data</th>
-					<th class="text-center">Peso</th>
-					<th class="text-center">Ações</th>
+					<th class="text-center">Pesagem</th>
+					<th class="text-center" style="width: 100px">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="obj in bull[0].weighings">
-					<td class="text-center">{{mergeDate(obj.createdAt)}}</td>
+					<td class="text-center">{{mergeDateComplete(obj.createdAt)}}</td>
 					<td class="text-center">{{obj.weight}}</td>
-					<td class="text-center">
+					<td class="text-center" style="width: 100px">
 						<button type="button" class="btn btn-danger btn-xs" ng-click="excluir(obj, $index)">Excluir</button>
 					</td>
 				</tr>
