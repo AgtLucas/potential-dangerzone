@@ -5,6 +5,7 @@ angular.module('Danger')
     function ($scope, resolvedBull, Bull) {
 
       $scope.bulls = resolvedBull;
+      $scope.bull = {};
 
       $scope.mergeDate = function(data){
         if(!!data){
@@ -36,6 +37,23 @@ angular.module('Danger')
         }
         return flag;
       };
+
+      $scope.reviverBoi = function(obj, index){
+        $scope.bull = obj;
+        angular.extend($scope.bull, {
+          status: 1,
+        });
+        $scope.save(obj.earring, index);
+      };
+
+      $scope.save = function (earring, index) {
+      Bull.update({earring: earring}, $scope.bull,
+      function () {
+        $scope.bulls.splice(index, 1);
+        new PNotify({text: "<strong>" + earring + "</strong> revivido com sucesso!", type: 'success', icon: '', delay: 2500});
+      });
+    };
+
 
       $scope.evolucao = function(peso1, peso2) {
         if(isNaN((((parseInt(peso2) - parseInt(peso1)) * 100) / parseInt(peso1)).toFixed(0))){

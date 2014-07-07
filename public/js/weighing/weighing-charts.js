@@ -36,9 +36,13 @@ angular.module('Danger').controller('ctrlWeighingBull', ['$scope', 'resolvedBull
 
     $scope.mergeMeses = function(total, meses){
       angular.forEach(total, function(value, key) {
-       $scope.meses.push({ y: parseInt(meses[key] / value), label: key});
+       $scope.meses.push({ y: parseInt(meses[key] / value), w: value, label: $scope.getValue(key)});
       });
       $scope.chartRow($scope.meses, meses);
+    };
+
+    $scope.getValue = function(value){
+      return value.substring(0, 2) + "/" + value.substring(2, 6);
     };
 
     $scope.mergeDate = function(data){
@@ -65,7 +69,7 @@ angular.module('Danger').controller('ctrlWeighingBull', ['$scope', 'resolvedBull
       theme: "theme2",
       data: [
       {
-        toolTipContent: "{label}: {y} Kilos",
+        toolTipContent: "{label}: {y} Kilos - {w} Pesagens",
         type: "column",
         showInLegend: true,
         legendMarkerColor: "gray",
