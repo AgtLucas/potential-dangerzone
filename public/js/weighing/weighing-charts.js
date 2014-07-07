@@ -5,8 +5,11 @@ angular.module('Danger').controller('ctrlWeighingBull', ['$scope', 'resolvedBull
     $scope.bulls = resolvedBull;
     $scope.meses = [];
 
+    $scope.btn = false;
+
     $scope.gerarGraficos = function(){
       $scope.merge($scope.bulls);
+      $scope.btn = true;
     };
 
     $scope.merge = function(data){
