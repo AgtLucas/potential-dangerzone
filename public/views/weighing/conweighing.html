@@ -55,7 +55,8 @@
 				<tr ng-repeat="obj in bull[0].weighings">
 					<td class="text-center">{{mergeDateComplete(obj.createdAt)}}</td>
 					<td class="text-center">{{obj.weight}}</td>
-					<td class="text-center" style="width: 100px">
+					<td class="text-center" style="width: 200px">
+						<button type="button" class="btn btn-primary btn-xs" ng-click="editar(obj)">Editar</button>
 						<button type="button" class="btn btn-danger btn-xs" ng-click="excluir(obj, $index)">Excluir</button>
 					</td>
 				</tr>

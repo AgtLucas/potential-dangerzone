@@ -3,6 +3,7 @@
 angular.module('Danger').controller('ctrlConBull', ['$scope', 'resolvedBull', 'Bull', function ($scope, resolvedBull, Bull) {
 
   $scope.bulls = resolvedBull;
+
   $scope.save = function (earring) {
     Bull.update({earring: earring}, $scope.bull,
     function () {

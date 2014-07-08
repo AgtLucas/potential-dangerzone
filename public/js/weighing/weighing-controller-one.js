@@ -9,6 +9,8 @@ angular.module('Danger')
       $scope.bull = {};
       $scope.showview = false;
 
+      $("#peso").mask("999.99");
+
       $scope.pesquisar = function(earring){
       $scope.showview = true;
       Bull.find({id: earring},
@@ -45,6 +47,18 @@ angular.module('Danger')
           function () {
             $scope.pesquisar(obj.BullId);
             new PNotify({text: "Peso <strong>" + obj.weight + "</strong> excluido com sucesso!", type: 'success', icon: '', delay: 2500});
+        });
+      };
+
+      $scope.editar = function(obj){
+        obj.weight = 456;
+        $scope.saveEditar(obj.id, obj);
+      };
+
+      $scope.saveEditar = function (id, obj) {
+        Weighing.update({id: id}, obj,
+        function () {
+          new PNotify({text: "<strong>" + obj.earring + "</strong> atualizado com sucesso!", type: 'success', icon: '', delay: 2500});
         });
       };
 
