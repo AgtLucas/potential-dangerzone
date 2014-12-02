@@ -1,0 +1,69 @@
+<h3>
+	<i class="glyphicon glyphicon-flag"></i>
+	&nbsp;&nbsp;Individual
+</h3>
+<form name="pesagemForm" role="form">
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<label>Brinco</label>
+	    	<input type="text" class="form-control" ng-model="brinco" data-min-length="0" data-html="1" data-animation="am-flip-x" ng-options="brinco as (brinco.earring + '') for brinco in brincos" placeholder="Número do brinco" bs-typeahead ng-change="pesquisar(brinco)" required>
+	  	</div>
+		</div>
+	</div>
+</form>
+<table class="table table-bordered table-condensed" ng-if="showBrinco()">
+	<thead>
+		<tr>
+			<th class="text-center table-brinco">Brinco</th>
+			<th class="text-center">Pesagens</th>
+			<th class="text-center table-total">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="table-brinco text-center">{{brinco.earring}}</td>
+			<td class="text-center td-pesagem">
+				<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in bull.Weighings" >
+					<thead>
+						<tr>
+							<th class="text-center">{{mergeDate(pesos.createdAt)}}</th>
+							<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em>
+								&nbsp;&nbsp;{{mergeDay(mergeDate(bull.Weighings[$index - 1].createdAt), mergeDate(bull.Weighings[$index].createdAt))}} Dias</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">{{pesos.weight.toFixed(2)}}</td>
+							<td ng-show="$index > 0" class="text-center">{{evolucao(bull.Weighings[$index - 1].weight, bull.Weighings[$index].weight)}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td class="table-total text-center">{{evolucao(bull.Weighings[0].weight || 0, bull.Weighings[bull.Weighings.length - 1].weight || 0)}}</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+<div class="row" ng-if="showBrinco()">
+	<div class="col-sm-6">
+		<table class="table table-bordered table-condensed" ng-show="bull.Weighings.length > 0">
+			<thead>
+				<tr>
+					<th class="text-center" style="width: 200px">Data</th>
+					<th class="text-center">Peso</th>
+					<th class="text-center" style="width: 100px">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="obj in bull.Weighings">
+					<td class="text-center" style="width: 200px">{{mergeDateComplete(obj.createdAt)}}</td>
+					<td class="text-center">{{obj.weight.toFixed(2)}}</td>
+					<td class="text-center" style="width: 200px">
+						<button type="button" class="btn btn-danger btn-xs" ng-click="excluir(obj, $index)">Excluir</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,9 +1,53 @@
 body {
-  margin-top: 60px;
-  padding: 10px;
-  background-color: #ECF0F1;
+  padding-top: 60px;
+}
+.label-login{
+  text-align: center;
+  margin-bottom: 20px;
+  /*color: orangered;*/
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.alert{
+  margin-top: 10px;
+  text-align: center;
+}
+.ng-cloak{
+  display: none;
+}
+iframe {
+  display:block;
+  width:100%;
+  border:none;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
 }
 
-.canvasjs-chart-credit{
-  display: none !important;
+.table-brinco {
+  width: 80px;
+}
+
+.table-total {
+  width: 130px;
+}
+
+.td-pesagem {
+  display: -webkit-box;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+.table-pesagem {
+  display: inline;
+  border: none;
+  margin: 0px;
+}
+
+.ui-pnotify  {
+  margin-top: 60px !important;
 }

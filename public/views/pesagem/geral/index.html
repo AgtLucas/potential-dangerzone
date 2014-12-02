@@ -1,0 +1,44 @@
+<h3>
+	<i class="glyphicon glyphicon-list"></i>
+	&nbsp;&nbsp;Geral
+</h3>
+<div class="row">
+	<div class="col-sm-12 text-center">
+		<button type="button" class="btn btn-primary" ng-click="gerarPDF()" ng-disabled="!bulls.length > 0">
+			<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
+		</button>
+	</div>
+	<br />
+	<table class="table table-bordered table-condensed" ng-repeat="obj in bulls">
+		<thead>
+			<tr>
+				<th class="text-center table-brinco">Brinco</th>
+				<th class="text-center">Pesagens</th>
+				<th class="text-center table-total">Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="table-brinco text-center">{{obj.earring}}</td>
+				<td class="text-center td-pesagem">
+					<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in obj.Weighings" >
+						<thead>
+							<tr>
+								<th class="text-center">{{mergeDate(pesos.createdAt)}}</th>
+								<th ng-show="$index > 0" class="text-center"><em class="glyphicon glyphicon-stats"></em>
+									&nbsp;&nbsp;{{mergeDay(mergeDate(obj.Weighings[$index - 1].createdAt), mergeDate(obj.Weighings[$index].createdAt))}} Dias</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">{{pesos.weight.toFixed(2)}}</td>
+								<td ng-show="$index > 0" class="text-center">{{evolucao(obj.Weighings[$index - 1].weight, obj.Weighings[$index].weight)}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td class="table-total text-center">{{evolucao(obj.Weighings[0].weight || 0, obj.Weighings[obj.Weighings.length - 1].weight || 0)}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

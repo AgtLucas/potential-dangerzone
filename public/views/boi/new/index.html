@@ -1,0 +1,31 @@
+<h3>
+	<i class="glyphicon glyphicon-magnet"></i>
+	&nbsp;&nbsp;Novo boi
+</h3>
+<form name="boiForm" role="form">
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<label>Brinco</label>
+	    	<input type="text" class="form-control" placeholder="Número do brinco" ng-model="brinco" maxlength="6" required>
+	  	</div>
+		</div>
+	</div>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+			<div class="form-group">
+				<label>Nascimento</label>
+        <input type="text" class="form-control" ng-model="nascimento" data-date-format="dd/MM/yyyy" data-date-type="number" data-autoclose="1" bs-datepicker ng-readonly="true" style="background-color: white; cursor: pointer">
+      </div>
+		</div>
+	</div>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<button type="button" class="btn btn-success" ng-disabled="boiForm.$invalid" ng-click="salvar()">
+	    		<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+	    	</button>
+	  	</div>
+		</div>
+	</div>
+</form>

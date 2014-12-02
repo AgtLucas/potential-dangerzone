@@ -1,0 +1,41 @@
+<h3>
+	<i class="glyphicon glyphicon-magnet"></i>
+	&nbsp;&nbsp;Vivos
+</h3>
+<body>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<input type="text" class="form-control" ng-model="expressao" placeholder="Expressão de consulta"/>
+	  	</div>
+		</div>
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<button type="button" class="btn btn-primary" ng-click="gerarPDF()" ng-disabled="!bulls.length > 0">
+					<i class="glyphicon glyphicon-file"></i>&nbsp;&nbsp;Gerar PDF
+				</button>
+	  	</div>
+		</div>
+	</div>
+	<table class="table table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th class="text-center" style="width: 100px">#</th>
+				<th>Brinco</th>
+				<th class="text-center" style="width: 200px">Data de Nascimento</th>
+				<th class="text-center" style="width: 100px">Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="obj in bulls | filter:expressao | orderBy: 'earring'" ng-show="obj.status == 1" >
+				<td class="text-center" style="width: 100px">{{$index + 1}}</td>
+				<td >{{obj.earring}}</td>
+				<td class="text-center" style="width: 200px">{{nascimento(obj.birthday)}}</td>
+				<td class="text-center" style="width: 100px">
+					<span ng-show="obj.status != 1" ng-show="obj.status != 1">Abatido em {{nascimento(obj.slaughter)}}</span>
+					<button ng-show="obj.status == 1" type="button" class="btn btn-xs btn-danger" ng-click="abater(obj, $index)">Abater</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>

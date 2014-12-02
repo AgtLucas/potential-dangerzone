@@ -1,0 +1,39 @@
+<h3>
+	<i class="glyphicon glyphicon-tower"></i>
+	&nbsp;&nbsp;Nova pesagem
+</h3>
+<form name="pesagemForm" role="form">
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<label>Brinco</label>
+	    	<input type="text" class="form-control" ng-model="brinco" data-min-length="0" data-html="1" data-animation="am-flip-x" ng-options="brinco as (brinco.earring + '') for brinco in brincos" placeholder="Número do brinco" bs-typeahead required>
+	  	</div>
+		</div>
+	</div>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<label>Peso</label>
+	    	<input type="text" class="form-control" placeholder="Peso" id="peso" ng-model="peso">
+	  	</div>
+		</div>
+	</div>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+			<div class="form-group">
+				<label>Data da pesagem</label>
+        <input type="text" class="form-control" ng-model="dataPesagem" data-date-format="dd/MM/yyyy" data-date-type="number" data-autoclose="1" bs-datepicker ng-readonly="true" style="background-color: white; cursor: pointer">
+      </div>
+		</div>
+	</div>
+	<div class="row ng-cloak">
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<button type="button" class="btn btn-success" ng-disabled="showButton()" ng-click="salvar()">
+	    		<i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+	    	</button>
+	  	</div>
+		</div>
+	</div>
+</form>

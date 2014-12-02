@@ -1,94 +1,79 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Danger">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/datepicker.css">
-    <link rel="stylesheet" href="css/pnotify.custom.min.css">
-    <link rel="stylesheet" href="lib/select2/css/select2.css">
-    <link rel="shortcut icon" href="img/logo-top.png">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="author" href="fabricioronchi.com">
+    <meta name="description" content="Temperatura e Humidade em Schroeder">
     <title>Rede Top</title>
+    <link href="lib/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+     <div class="container">
+       <div class="navbar-header">
+         <a class="navbar-brand" href="javascript:void(0)"></a>
+       </div>
+     </div>
+    </nav>
+    <div ng-app="schroeder" ng-controller="schroederCtrl" class="container ng-cloak">
+      <form class="form-signin" role="form" ng-show="view == 1" name="loginForm">
+      <h2 class="label-login">Login</h2>
+      <input type="email" class="form-control" placeholder="Email" name="email" ng-model="email">
+      <br>
+      <input type="password" class="form-control" placeholder="Senha" ng-model="password">
+      <br>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <button class="btn btn-success" type="button" style="margin: 5px" ng-click="logar()" ng-disabled="btnLogin">
+            <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Entrar
+          </button>
+          <button class="btn btn-primary" type="button" style="margin: 5px" ng-click="irRegistrar()">
+            <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Registrar
           </button>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">Início</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boi <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#NewBull">Novo</a></li>
-                <li><a href="#ConBull">Consulta Geral</a></li>
-                <li><a href="#AbatidosBull">Abatidos</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesagem <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#NewWeighing">Nova</a></li>
-                <li><a href="#ConAll">Consulta Geral</a></li>
-                <li><a href="#ConWeighing">Individual</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gráficos<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#ChartBull">Bois</a></li>
-                <li><a href="#ChartWeighing">Pesagem / Mês</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
       </div>
-    </div>
-    <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-            <div ng-view></div>
+        <div class="alert alert-danger alert-dismissible" ng-show="showMessagem">
+          <strong>Ops!</strong>  {{error}}
         </div>
       </div>
+    </form>
+    <form class="form-signin" name="userForm" role="form" ng-show="view == 2">
+      <h2 class="label-login">Novo usuário</h2>
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" placeholder="Digite seu nome" ng-model="nomeRegister" required>
+      </div>
+       <div class="form-group" ng-class="{'has-error': userForm.emailRegister.$invalid && !userForm.emailRegister.$pristine }">
+        <label>Email</label>
+        <input type="email" name="emailRegister" class="form-control" placeholder="Digite seu email" ng-model="emailRegister">
+        <p ng-show="userForm.emailRegister.$invalid && !userForm.emailRegister.$pristine" class="help-block">Email inválido!</p>
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" class="form-control" placeholder="Digite sua senha" ng-model="passwordRegister" required>
+      </div>
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-success" type="button" style="margin: 5px" ng-click="registrar()" ng-disabled="btnRegister || userForm.$invalid">
+          <i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Salvar
+        </button>
+        <button class="btn btn-primary" type="button" style="margin: 5px" ng-click="voltar()">
+          <i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;Voltar
+        </button>
+      </div>
+      <div class="row">
+        <div class="alert alert-danger alert-dismissible" ng-show="showMessagem">
+          <strong>Ops!</strong>  {{error}}
+        </div>
+      </div>
+    </form>
     </div>
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/jquery/dist/jquery.mask.min.js"></script>
-    <script src="lib/lodash/dist/lodash.js"></script>
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="lib/angular-ui-date/src/date.js"></script>
-    <script src="lib/bootstrap-css/js/bootstrap.min.js"></script>
-    <script src="lib/bootstrap-css/js/bootstrap-datepicker.js"></script>
-    <script src="lib/jspdf/jspdf.debug.js"></script>
-    <script src="lib/jspdf/jspdf.plugin.cell.js"></script>
-    <script src="lib/pnotify/pnotify.custom.min.js"></script>
-    <script src="lib/select2/js/select2.js"></script>
-    <script src="lib/select2/js/select2-bootstrap.js"></script>
-    <script src="lib/chart/chart.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/home/home-controller.js"></script>
-    <script src="js/bull/bull-controller.js"></script>
-    <script src="js/bull/bull-controller-con.js"></script>
-    <script src="js/bull/bull-charts.js"></script>
-    <script src="js/bull/bull-abatidos.js"></script>
-    <script src="js/bull/bull-router.js"></script>
-    <script src="js/bull/bull-service.js"></script>
-    <script src="js/weighing/weighing-controller.js"></script>
-    <script src="js/weighing/weighing-controller-con.js"></script>
-    <script src="js/weighing/weighing-charts.js"></script>
-    <script src="js/weighing/weighing-controller-one.js"></script>
-    <script src="js/weighing/weighing-router.js"></script>
-    <script src="js/weighing/weighing-service.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="js/index/controller.js"></script>
   </body>
 </html>
