@@ -21,10 +21,12 @@ define(['js/app', 'jquery', 'jqueryMask'], function (app) {
     };
 
     $scope.salvar = function(){
+      var data = new Date($scope.dataPesagem);
+      data.setHours(0);
       $http.post("/new-pesagem", {
         "brinco": $scope.brinco,
         "peso": $("#peso").val(),
-        "dataPesagem": new Date($scope.dataPesagem)
+        "dataPesagem": data
       }).success(function(data){
         SweetAlert.success(data.message, "", "<i class='glyphicon glyphicon-ok'></i>&nbsp;&nbsp;Ok");
         $scope.clear();

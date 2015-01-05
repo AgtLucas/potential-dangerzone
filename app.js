@@ -43,8 +43,8 @@ function findById(id, fn) {
   });
 }
 
-function findByUsername(username, fn) {
-  db.User.find({ where: { email: username } }).success(function(entity) {
+function findByUsername(username, password, fn) {
+  db.User.find({ where: { email: username, password: password } }).success(function(entity) {
     if (entity) {
       return fn(null, entity);
     } else {
@@ -76,7 +76,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new LocalStrategy(
   function(username, password, done) {
     process.nextTick(function () {
-      findByUsername(username, function(err, user) {
+      findByUsername(username, password, function(err, user) {
         if (err) {
           return done(err);
         }
