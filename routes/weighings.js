@@ -35,7 +35,7 @@ exports.create = function(req, res) {
     weight: req.body.peso,
     earring: req.body.brinco.earring,
     BullId: req.body.brinco.id,
-    created: req.body.dataPesagem,
+    created: new Date(req.body.dataPesagem),
   }).success(function(entityPesagem) {
     res.json({
       error: 0,
