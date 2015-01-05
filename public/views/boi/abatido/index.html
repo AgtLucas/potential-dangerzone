@@ -27,11 +27,11 @@
 				<td>{{obj.earring}}</td>
 				<td class="text-center" style="width: 150px">{{nascimento(obj.birthday || 0)}}</td>
 				<td class="text-center" style="width: 150px">{{nascimento(obj.slaughter || 0)}}</td>
-				<td class="text-center">{{obj.weighings[0].weight.toFixed(2) || '0.00'}}</td>
-				<td class="text-center">{{obj.weighings[obj.weighings.length - 1].weight.toFixed(2) || '0.00'}}</td>
+				<td class="text-center">{{obj.Weighings[0].weight.toFixed(2) || '0.00'}}</td>
+				<td class="text-center">{{obj.Weighings[obj.Weighings.length - 1].weight.toFixed(2) || '0.00'}}</td>
 				<td class="text-center" style="width: 190px">
-					{{mergeDay(mergeDate(obj.weighings[0].createdAt || 0), mergeDate(obj.weighings[obj.weighings.length - 1].createdAt || 0))}} Dias -
-					{{evolucao(obj.weighings[0].weight || 0, obj.weighings[obj.weighings.length - 1].weight || 0)}}</td>
+					{{mergeDay(mergeDate(obj.Weighings[0].createdAt || 0), mergeDate(obj.Weighings[obj.Weighings.length - 1].createdAt || 0))}} Dias -
+					{{evolucao(obj.Weighings[0].weight || 0, obj.Weighings[obj.Weighings.length - 1].weight || 0)}}</td>
 				<td class="text-center">
 					<button type="button" class="btn btn-danger btn-xs" ng-click="reviverBoi(obj)">Reviver</button>
 				</td>

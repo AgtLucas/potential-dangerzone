@@ -99,6 +99,7 @@ exports.abater = function(req, res) {
     }
   }).success(function(entity) {
     entity.status = 2;
+    entity.slaughter = new Date();
     if (entity) {
       entity.updateAttributes(req.body).success(function(entity) {
         res.json({
