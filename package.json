@@ -22,7 +22,7 @@
     "passport": ">= 0.0.0",
     "passport-local": ">= 0.0.0",
     "pg": "^3.4.1",
-    "sequelize": "~2.0.0-beta.2"
+    "sequelize": "AgtLucas/sequelize"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
