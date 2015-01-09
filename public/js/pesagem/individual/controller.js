@@ -8,9 +8,12 @@ define(['js/app'], function (app) {
     });
 
     $scope.mergeDay = function(data1, data2){
-      data1 = new Date("2014-" + data1.split("/")[1] + "-" +data1.split("/")[0]);
-      data2 = new Date("2014-" + data2.split("/")[1] + "-" +data2.split("/")[0]);
-      return ((data2 - data1) / (24 * 60 * 60 * 1000));
+      if(data1 && data2){
+        data1 = new Date(data1.split("/")[2] + "-" + data1.split("/")[1] + "-" + data1.split("/")[0]);
+        data2 = new Date(data2.split("/")[2] + "-" + data2.split("/")[1] + "-" + data2.split("/")[0]);
+        return ((data2 - data1) / (24 * 60 * 60 * 1000));
+      }
+      return "";
     };
 
     $scope.mergeDate = function(data){
