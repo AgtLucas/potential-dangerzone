@@ -26,14 +26,14 @@ define(['js/app'], function (app) {
       if(data1 && data2){
         data1 = new Date(data1.split("/")[2] + "-" + data1.split("/")[1] + "-" + data1.split("/")[0]);
         data2 = new Date(data2.split("/")[2] + "-" + data2.split("/")[1] + "-" + data2.split("/")[0]);
-        return ((data1 - data2) / (24 * 60 * 60 * 1000));
+        return ((data2 - data1) / (24 * 60 * 60 * 1000));
       }
       return "";
     };
 
     $scope.mergeDate = function(data){
       if(!!data){
-        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1];
+        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1] + "/" + (data.split("T")[0]).split("-")[0];
       }else{
         return "";
       }
