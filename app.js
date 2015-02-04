@@ -205,6 +205,7 @@ app.get('/bois', naoAutenticado, bulls.findAll)
 app.get('/bois-geral', naoAutenticado, bulls.all)
 app.get('/bois-simples', naoAutenticado, bulls._findAll)
 app.get('/bois-vivos', naoAutenticado, bulls.findAllVivos)
+app.get('/bois-vivos-select/:expression', naoAutenticado, bulls.findAllVivosSelect)
 app.get('/bois-abatidos', naoAutenticado, bulls.findAllAbatidos)
 app.get('/pesagem-vivos', naoAutenticado, weighings.findAllVivos)
 

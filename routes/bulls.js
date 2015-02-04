@@ -11,7 +11,8 @@ exports.findAll = function(req, res) {
     where: {
       status: 1
     },
-    include: [db.Weighing]
+    include: [db.Weighing],
+    order: 'earring ASC'
   }).success(function(entities) {
     res.json(entities)
   })
@@ -31,6 +32,21 @@ exports.findAllAbatidos = function(req, res) {
 
 exports.findAllVivos = function(req, res) {
   db.Bull.findAll({where: { status: 1 }}).success(function(entities) {
+    res.json(entities)
+  });
+};
+
+exports.findAllVivosSelect = function(req, res) {
+  db.Bull.findAll({
+    where: {
+      status: 1,
+      earring: {
+        like: req.param('expression') + '%'
+      }
+    },
+    attributes: ['id', 'earring'],
+    order: 'earring ASC'
+  }).success(function(entities) {
     res.json(entities)
   });
 }

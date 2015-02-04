@@ -7,7 +7,7 @@
 		<div class="col-sm-5">
 	 		<div class="form-group">
 	    	<label>Brinco</label>
-	    	<input type="text" class="form-control" ng-model="brinco" data-min-length="0" data-html="1" data-animation="am-flip-x" ng-options="brinco as (brinco.earring + '') for brinco in brincos" placeholder="Número do brinco" bs-typeahead required>
+	    	<input type="text" class="form-control" ng-model="brinco" data-min-length="0" data-html="1" data-animation="am-flip-x" ng-options="brinco as (brinco.earring + '') for brinco in getBrincos($viewValue)" placeholder="Número do brinco" bs-typeahead required>
 	  	</div>
 		</div>
 	</div>

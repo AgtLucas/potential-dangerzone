@@ -37,7 +37,11 @@
 						</tbody>
 					</table>
 				</td>
-				<td class="table-total text-center">{{evolucao(obj.Weighings[0].weight || 0, obj.Weighings[obj.Weighings.length - 1].weight || 0)}}</td>
+				<td class="table-total text-center">
+					{{evolucao(obj.Weighings[0].weight || 0, obj.Weighings[obj.Weighings.length - 1].weight || 0)}}
+					<br>
+					<div style="margin-top: 7px; font-size: 17px">{{getKilosPorDia(obj.Weighings[0].weight || 0, obj.Weighings[obj.Weighings.length - 1].weight || 0, mergeDay(mergeDate(obj.Weighings[0].createdAt), mergeDate(obj.Weighings[obj.Weighings.length - 1].createdAt)))}}</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>

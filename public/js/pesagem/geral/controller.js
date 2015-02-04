@@ -47,6 +47,19 @@ define(['js/app'], function (app) {
       doc.save("Relatorio.pdf");
     };
 
+    $scope.getKilosPorDia = function(peso1, peso2, dias) {
+      if(peso1 == 0){
+        return '';
+      }
+      if(peso2 == 0){
+        return '';
+      }
+      if(peso1 == peso2){
+        return '';
+      }
+      return ((peso2 - peso1) / dias).toFixed(3);
+    };
+
     $scope.popular = function(doc){
       doc.setFontSize(11);
       var linha = 45;

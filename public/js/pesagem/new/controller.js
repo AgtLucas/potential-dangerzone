@@ -10,11 +10,20 @@ define(['js/app', 'jquery', 'jqueryMask'], function (app) {
 
     $("#peso").mask("999.99");
 
-    $http.get("/bois-vivos").success(function(data){
-      angular.extend($scope, {
-        brincos: data
-      });
-    });
+    $scope.getBrincos = function(viewValue){
+      if(viewValue != "" && viewValue != undefined){
+        if(angular.isObject(viewValue)){
+          return viewValue;
+        }else{
+          return $http.get('/bois-vivos-select/' + viewValue)
+          .then(function(res) {
+            return res.data;
+          });
+        }
+      }else{
+        return [];
+      }
+    };
 
     $scope.showButton = function(){
       return (!angular.isObject($scope.brinco)) || (!$("#peso").val() != "");
