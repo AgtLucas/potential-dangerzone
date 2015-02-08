@@ -20,7 +20,7 @@ var express        = require('express')
   , arduino = require('./routes/arduino')
   , task = require('./routes/task')
   ,  site = require('./routes/site')
-  , listArduinos = []
+  , listArduinos = {}
   , listClients = []
   , time = '';
 
@@ -256,9 +256,7 @@ io.on('connection', function(client){
   listClients.push(client);
 
   client.on('message', function(obj){
-    for (a in listArduinos) {
-      listArduinos[a].write(obj.pin.toString());
-    };
+    listArduinos.write(obj.pin.toString());
   });
 
   client.on('disconnect', function(){
@@ -274,9 +272,9 @@ io.on('connection', function(client){
 tcpServer.on('connection',function(socket){
 
   console.log('Arduino conectado');
-  listArduinos.push(socket);
+  listArduinos = {};
+  listArduinos = socket;
   arduino.reset();
-
   socket.text = "";
 
   socket.on('data',function(data){
