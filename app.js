@@ -16,13 +16,7 @@ var express        = require('express')
   , users = require('./routes/user')
   , login = require('./routes/login')
   , bulls = require('./routes/bulls')
-  , weighings = require('./routes/weighings')
-  , arduino = require('./routes/arduino')
-  , task = require('./routes/task')
-  ,  site = require('./routes/site')
-  , listArduinos = null
-  , listClients = []
-  , time = '';
+  , weighings = require('./routes/weighings');
 
 app.set('port', process.env.PORT || 3000)
 app.use(bodyParser())
@@ -232,137 +226,12 @@ app.put('/reviver/:id', naoAutenticado, bulls.reviver)
 
 app.delete('/pesagem/:id', naoAutenticado, weighings.destroy)
 
-
-/// Início - HOME
-app.get('/real-time', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  site.realTime();
-});
-
-app.get('/arduino', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  arduino.findAll(req, res, next);
-});
-
-app.get('/arduino/:id', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  arduino.find(req, res, next);
-});
-
-app.get('/task', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  task.findAll(req, res, next);
-});
-
-app.post('/arduino', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  arduino.persist(req, res, next);
-});
-
-app.post('/task', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  task.persist(req, res, next);
-});
-
-app.post('/task/toogle/:id', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  task.toogleRepeat(req, res, next);
-});
-
-app.del('/task/:id', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  task.delete(req, res, next);
-});
-
-app.del('/arduino/:id', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-  arduino.delete(req, res, next);
-});
-/// Fim - HOME
-
-io.on('connection', function(client){
-
-  listClients.push(client);
-
-  client.on('message', function(obj){
-    if(listArduinos != null){
-      listArduinos.write(obj.pin.toString());
-    }
-  });
-
-  client.on('disconnect', function(){
-    for(var i = 0; i < listClients.length; i++){
-      if(listClients[i].id == client.id){
-        listClients.splice(i, 1);
-      }
-    }
-  });
-
-});
-
-tcpServer.on('connection',function(socket){
-
-  console.log('Arduino conectado');
-  listArduinos = null;
-  listArduinos = socket;
-  arduino.reset();
-  socket.text = "";
-
-  socket.on('data',function(data){
-
-    socket.text = socket.text + data.toString();
-
-    if(socket.text.length > 3){
-      socket.text = "";
-    }
-
-    if(socket.text.length == 3){
-      if(socket.text.charAt(1) == "-"){
-        db.Arduino.find({ where: { pin: socket.text.charAt(0) } }).success(function(entity) {
-          if(entity){
-            entity.status = socket.text.charAt(2);
-            socket.text = "";
-            entity.updateAttributes(entity).success(function(_entity) {
-              for (c in listClients) {
-                listClients[c].emit('message', _entity);
-              };
-            })
-          }
-        });
-      }else{
-        socket.text = "";
-      }
-    }
-  });
-});
-
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) {
     throw err
   } else {
     http.listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'))
-    });
-    tcpServer.listen(1337, function(){
-      console.log('Socket está na porta: 1337.');
     });
   }
 })
