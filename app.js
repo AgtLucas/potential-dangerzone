@@ -1,6 +1,10 @@
 var express        = require('express')
   , app            = express()
   , http           = require('http').Server(app)
+  , io = require('socket.io')
+  , io = io.listen(http)
+  , net = require('net')
+  , tcpServer = net.createServer()
   , bodyParser     = require('body-parser')
   , errorHandler   = require('errorhandler')
   , methodOverride = require('method-override')
@@ -13,6 +17,12 @@ var express        = require('express')
   , login = require('./routes/login')
   , bulls = require('./routes/bulls')
   , weighings = require('./routes/weighings')
+  , arduino = require('./routes/arduino')
+  , task = require('./routes/task')
+  ,  site = require('./routes/site')
+  , listArduinos = []
+  , listClients = []
+  , time = '';
 
 app.set('port', process.env.PORT || 3000)
 app.use(bodyParser())
@@ -222,12 +232,84 @@ app.put('/reviver/:id', naoAutenticado, bulls.reviver)
 
 app.delete('/pesagem/:id', naoAutenticado, weighings.destroy)
 
+
+/// HOME
+
+app.get('/real-time', site.realTime);
+app.get('/arduino', arduino.findAll)
+app.get('/arduino/:id', arduino.find)
+app.get('/task', task.findAll);
+app.post('/arduino', arduino.persist)
+app.post('/task', task.persist)
+app.post('/task/toogle/:id', task.toogleRepeat)
+app.del('/task/:id', task.delete)
+app.del('/arduino/:id', arduino.delete)
+
+io.on('connection', function(client){
+
+  listClients.push(client);
+
+  client.on('message', function(obj){
+    for (a in listArduinos) {
+      listArduinos[a].write(obj.pin.toString());
+    };
+  });
+
+  client.on('disconnect', function(){
+    for(var i = 0; i < listClients.length; i++){
+      if(listClients[i].id == client.id){
+        listClients.splice(i, 1);
+      }
+    }
+  });
+
+});
+
+tcpServer.on('connection',function(socket){
+
+  console.log('Arduino conectado');
+  listArduinos.push(socket);
+  arduino.reset();
+
+  socket.text = "";
+
+  socket.on('data',function(data){
+
+    socket.text = socket.text + data.toString();
+
+    if(socket.text.length > 3){
+      socket.text = "";
+    }
+
+    if(socket.text.length == 3){
+      if(socket.text.charAt(1) == "-"){
+        db.Arduino.find({ where: { pin: socket.text.charAt(0) } }).success(function(entity) {
+          if(entity){
+            entity.status = socket.text.charAt(2);
+            socket.text = "";
+            entity.updateAttributes(entity).success(function(_entity) {
+              for (c in listClients) {
+                listClients[c].emit('message', _entity);
+              };
+            })
+          }
+        });
+      }else{
+        socket.text = "";
+      }
+    }
+  });
+});
+
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) {
     throw err
   } else {
     http.listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'))
+    });
+    tcpServer.listen(1337, function(){
+      console.log('Socket está na porta: 1337.');
     });
   }
 })
