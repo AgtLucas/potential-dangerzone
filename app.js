@@ -245,6 +245,12 @@ app.post('/task/toogle/:id', task.toogleRepeat)
 app.del('/task/:id', task.delete)
 app.del('/arduino/:id', arduino.delete)
 
+app.all('*', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 io.on('connection', function(client){
 
   listClients.push(client);
