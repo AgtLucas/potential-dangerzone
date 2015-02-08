@@ -233,23 +233,61 @@ app.put('/reviver/:id', naoAutenticado, bulls.reviver)
 app.delete('/pesagem/:id', naoAutenticado, weighings.destroy)
 
 
-/// HOME
-
-app.get('/real-time', site.realTime);
-app.get('/arduino', arduino.findAll)
-app.get('/arduino/:id', arduino.find)
-app.get('/task', task.findAll);
-app.post('/arduino', arduino.persist)
-app.post('/task', task.persist)
-app.post('/task/toogle/:id', task.toogleRepeat)
-app.del('/task/:id', task.delete)
-app.del('/arduino/:id', arduino.delete)
-
-app.all('*', function(req, res, next){
+/// Início - HOME
+app.get('/real-time', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+  site.realTime();
 });
+
+app.get('/arduino', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  arduino.findAll(req, res, next);
+});
+
+app.get('/arduino/:id', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  arduino.find(req, res, next);
+});
+
+app.get('/task', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  task.findAll(req, res, next);
+});
+
+app.post('/arduino', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  arduino.persist(req, res, next);
+});
+
+app.post('/task', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  task.persist(req, res, next);
+});
+
+app.post('/task/toogle/:id', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  task.toogleRepeat(req, res, next);
+});
+
+app.del('/task/:id', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  task.delete(req, res, next);
+});
+
+app.del('/arduino/:id', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  arduino.delete(req, res, next);
+});
+/// Fim - HOME
 
 io.on('connection', function(client){
 
