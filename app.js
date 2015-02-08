@@ -237,54 +237,63 @@ app.delete('/pesagem/:id', naoAutenticado, weighings.destroy)
 app.get('/real-time', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   site.realTime();
 });
 
 app.get('/arduino', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   arduino.findAll(req, res, next);
 });
 
 app.get('/arduino/:id', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   arduino.find(req, res, next);
 });
 
 app.get('/task', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   task.findAll(req, res, next);
 });
 
 app.post('/arduino', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   arduino.persist(req, res, next);
 });
 
 app.post('/task', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   task.persist(req, res, next);
 });
 
 app.post('/task/toogle/:id', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   task.toogleRepeat(req, res, next);
 });
 
 app.del('/task/:id', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   task.delete(req, res, next);
 });
 
 app.del('/arduino/:id', function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header 'Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
   arduino.delete(req, res, next);
 });
 /// Fim - HOME
