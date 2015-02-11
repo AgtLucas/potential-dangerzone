@@ -11,8 +11,11 @@ exports.findAll = function(req, res) {
     where: {
       status: 1
     },
-    include: [db.Weighing],
-    order: 'earring ASC'
+    include: [{
+        model: db.Weighing
+      }
+    ],
+    order: 'earring ASC, Weighings.createdAt ASC'
   }).success(function(entities) {
     res.json(entities)
   })

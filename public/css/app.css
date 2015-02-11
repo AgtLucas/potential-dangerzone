@@ -45,7 +45,7 @@ iframe {
 .table-pesagem {
   display: inline;
   border: none;
-  margin: 0px;
+  margin: 0px -5px 0px 0px;
 }
 
 .ui-pnotify  {

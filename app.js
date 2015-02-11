@@ -205,7 +205,7 @@ app.get('/grafico-pesagem', naoAutenticado, function(req, res, next){
   res.redirect('/home');
 });
 
-app.get('/bois', naoAutenticado, bulls.findAll)
+app.get('/bois', bulls.findAll)
 app.get('/bois-geral', naoAutenticado, bulls.all)
 app.get('/bois-simples', naoAutenticado, bulls._findAll)
 app.get('/bois-vivos', naoAutenticado, bulls.findAllVivos)
