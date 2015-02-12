@@ -1,39 +1,28 @@
 define(['js/app', 'jquery', 'jqueryMask'], function (app) {
-  app.controller('new-pesagem', function ($scope, $http, $sce, SweetAlert) {
+  app.controller('new-pesagem', function ($scope, $http, SweetAlert) {
+
+    var d = new Date();
 
     angular.extend($scope, {
       brinco: "",
       brincos: [],
       peso: "",
-      dataPesagem: new Date()
+      dataPesagemDia: d.getDate(),
+      dataPesagemMes: d.getMonth() + 1,
+      dataPesagemAno: d.getFullYear()
     });
 
     $("#peso").mask("999.99");
-
-    $scope.getBrincos = function(viewValue){
-      if(viewValue != "" && viewValue != undefined){
-        if(angular.isObject(viewValue)){
-          return viewValue;
-        }else{
-          return $http.get('/bois-vivos-select/' + viewValue)
-          .then(function(res) {
-            return res.data;
-          });
-        }
-      }else{
-        return [];
-      }
-    };
 
     $scope.showButton = function(){
       return (!angular.isObject($scope.brinco)) || (!$("#peso").val() != "");
     };
 
     $scope.salvar = function(){
-      var data = new Date($scope.dataPesagem);
+      var data = new Date($scope.dataPesagemAno + "-" + $scope.dataPesagemMes + "-" + $scope.dataPesagemDia);
       data.setHours(0);
       $http.post("/new-pesagem", {
-        "brinco": $scope.brinco,
+        "brinco": $scope.brinco.originalObject,
         "peso": $("#peso").val(),
         "dataPesagem": data
       }).success(function(data){
@@ -46,7 +35,9 @@ define(['js/app', 'jquery', 'jqueryMask'], function (app) {
       angular.extend($scope, {
         brinco: "",
         peso: "",
-        dataPesagem: new Date()
+        dataPesagemDia: d.getDate(),
+        dataPesagemMes: d.getMonth() + 1,
+        dataPesagemAno: d.getFullYear()
       });
     };
 

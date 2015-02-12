@@ -2,9 +2,14 @@
 	<i class="glyphicon glyphicon-list"></i>
 	&nbsp;&nbsp;Geral
 </h3>
+<div class="row" ng-show="!bulls.length > 0">
+	<div class="col-sm-12 text-center">
+			<img style="width: 50px" src="/img/loader.gif">
+	</div>
+</div>
 <div class="row">
 	<div class="col-sm-12 text-center">
-		<button type="button" class="btn btn-primary" ng-click="gerarPDF()" ng-disabled="!bulls.length > 0">
+		<button type="button" class="btn btn-primary" ng-click="gerarPDF()" ng-show="bulls.length > 0">
 			<em class="glyphicon glyphicon-file"></em>&nbsp;&nbsp;Gerar PDF
 		</button>
 	</div>

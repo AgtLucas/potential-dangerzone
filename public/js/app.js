@@ -1,5 +1,5 @@
-define(['angularAMD', 'angular-route', 'angular-strap', 'angular-sanitize'], function (angularAMD) {
-  var app = angular.module("app", ['ngRoute', 'mgcrea.ngStrap', 'ngSanitize']);
+define(['angularAMD', 'angular-route', 'autocomplete'], function (angularAMD) {
+  var app = angular.module("app", ['ngRoute', 'angucomplete']);
 
   app.factory("SweetAlert", function(){
     var swal = window.swal,
@@ -24,8 +24,6 @@ define(['angularAMD', 'angular-route', 'angular-strap', 'angular-sanitize'], fun
   });
 
   app.config(function ($routeProvider, $locationProvider, $httpProvider) {
-  	$locationProvider.html5Mode(true);
-   	$locationProvider.hashPrefix = '!';
 
     $routeProvider.when("/home", angularAMD.route({
       templateUrl: '/views/home/' + Math.random(),

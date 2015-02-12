@@ -3,7 +3,7 @@ define(['js/app'], function (app) {
 
     angular.extend($scope, {
       brinco: "",
-      brincos: [],
+      table: false,
       bull: { }
     });
 
@@ -18,7 +18,7 @@ define(['js/app'], function (app) {
 
     $scope.mergeDate = function(data){
       if(!!data){
-        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1];
+        return (data.split("T")[0]).split("-")[2] + "/" + (data.split("T")[0]).split("-")[1] + "/" + (data.split("T")[0]).split("-")[0];
       }else{
         return "";
       }
@@ -39,23 +39,36 @@ define(['js/app'], function (app) {
       return (parseInt(peso2) - parseInt(peso1)) + " Kg" + " - " + (((parseInt(peso2) - parseInt(peso1)) * 100) / parseInt(peso1)).toFixed(0) + "%";
     };
 
-    $http.get("/bois-vivos").success(function(data){
-      angular.extend($scope, {
-        brincos: data
-      });
-    });
-
     $scope.pesquisar = function(earring){
       if(angular.isObject(earring)){
         $http.get("/bois/" + earring.id).success(function(data){
           angular.extend($scope, {
+            table: true,
             bull: data
           });
         });
       }
     };
 
+    $scope.getKilosPorDia = function(peso1, peso2, dias) {
+      if(peso1 == 0){
+        return '';
+      }
+      if(peso2 == 0){
+        return '';
+      }
+      if(peso1 == peso2){
+        return '';
+      }
+      return ((peso2 - peso1) / dias).toFixed(3);
+    };
+
     $scope.showBrinco = function(){
+      if(!angular.isObject($scope.brinco)){
+        angular.extend($scope, {
+          table: false
+        });
+      }
       return angular.isObject($scope.brinco);
     };
 

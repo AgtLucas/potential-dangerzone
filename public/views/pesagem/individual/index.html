@@ -4,15 +4,31 @@
 </h3>
 <form name="pesagemForm" role="form">
 	<div class="row ng-cloak">
-		<div class="col-sm-5">
+		<div class="col-sm-4">
 	 		<div class="form-group">
 	    	<label>Brinco</label>
-	    	<input type="text" class="form-control" ng-model="brinco" data-min-length="0" data-html="1" data-animation="am-flip-x" ng-options="brinco as (brinco.earring + '') for brinco in brincos" placeholder="Número do brinco" bs-typeahead ng-change="pesquisar(brinco)" required>
+	    	<angucomplete
+          placeholder="Número do brinco"
+          pause="300"
+          selectedobject="brinco"
+          searchfields="earring"
+          titlefield="earring"
+          minlength="1"
+          url="/bois-vivos-select/"
+          inputclass="form-control"
+          matchclass="highlight"/>
+	  	</div>
+		</div>
+		<div class="col-sm-5">
+	 		<div class="form-group">
+	    	<button type="button" style="margin-top: 25px" class="btn btn-success" ng-disabled="!showBrinco()" ng-click="pesquisar(brinco.originalObject)">
+	    		<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Pesquisar
+	    	</button>
 	  	</div>
 		</div>
 	</div>
 </form>
-<table class="table table-bordered table-condensed" ng-if="showBrinco()">
+<table class="table table-bordered table-condensed" ng-show="table == true">
 	<thead>
 		<tr>
 			<th class="text-center table-brinco">Brinco</th>
@@ -22,7 +38,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td class="table-brinco text-center">{{brinco.earring}}</td>
+			<td class="table-brinco text-center">{{brinco.originalObject.earring}}</td>
 			<td class="text-center td-pesagem">
 				<table class="table table-bordered table-condensed table-pesagem" ng-repeat="pesos in bull.Weighings" >
 					<thead>
@@ -40,12 +56,14 @@
 					</tbody>
 				</table>
 			</td>
-			<td class="table-total text-center">{{evolucao(bull.Weighings[0].weight || 0, bull.Weighings[bull.Weighings.length - 1].weight || 0)}}</td>
+			<td class="table-total text-center">{{evolucao(bull.Weighings[0].weight || 0, bull.Weighings[bull.Weighings.length - 1].weight || 0)}}
+			<br>
+			<div style="margin-top: 7px; font-size: 17px">{{getKilosPorDia(bull.Weighings[0].weight || 0, bull.Weighings[bull.Weighings.length - 1].weight || 0, mergeDay(mergeDate(bull.Weighings[0].createdAt), mergeDate(bull.Weighings[bull.Weighings.length - 1].createdAt)))}}</div></td>
 		</tr>
 	</tbody>
 </table>
 <br />
-<div class="row" ng-if="showBrinco()">
+<div class="row" ng-show="table == true">
 	<div class="col-sm-6">
 		<table class="table table-bordered table-condensed" ng-show="bull.Weighings.length > 0">
 			<thead>

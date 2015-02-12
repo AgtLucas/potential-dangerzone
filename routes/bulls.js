@@ -59,7 +59,8 @@ exports.find = function(req, res) {
     where: {
       id: req.param('id')
     },
-    include: [db.Weighing]
+    include: [db.Weighing],
+    order: 'earring ASC, Weighings.createdAt ASC'
   }).success(function(entity) {
     if (entity) {
       res.json(entity)

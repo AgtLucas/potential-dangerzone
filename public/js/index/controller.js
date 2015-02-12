@@ -2,7 +2,7 @@ angular.module('schroeder', ['ngResource']).controller('schroederCtrl', ['$scope
 
   angular.extend($scope, {
     view: 1,
-    email: "",
+    email: "clelio.nb@uol.com.br",
     password: "",
     nomeRegister: "",
     emailRegister: "",
@@ -16,7 +16,7 @@ angular.module('schroeder', ['ngResource']).controller('schroederCtrl', ['$scope
   $scope.voltar = function(){
     angular.extend($scope, {
       view: 1,
-      email: "",
+      email: "clelio.nb@uol.com.br",
       password: "",
       nomeRegister: "",
       emailRegister: "",

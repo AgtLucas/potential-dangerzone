@@ -213,8 +213,8 @@ app.get('/bois-vivos-select/:expression', naoAutenticado, bulls.findAllVivosSele
 app.get('/bois-abatidos', naoAutenticado, bulls.findAllAbatidos)
 app.get('/pesagem-vivos', naoAutenticado, weighings.findAllVivos)
 
-app.get('/pesagem/:id', weighings.update)
-app.get('/bois/:id', bulls.find)
+app.get('/pesagem/:id', naoAutenticado, weighings.update)
+app.get('/bois/:id', naoAutenticado, bulls.find)
 
 app.post('/users', users.newUser)
 app.post('/new-boi', naoAutenticado, bulls.create)
